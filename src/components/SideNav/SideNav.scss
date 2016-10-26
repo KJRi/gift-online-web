@@ -1,0 +1,19 @@
+.side-nav {
+  margin-top: 50px;
+}
+
+.side-nav__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 241px;
+  z-index: 10;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+}
+
+.side-nav__menu {
+  // 如果要让menu滚动后覆盖header，将position设置设置为relative
+  z-index: 1;
+}
