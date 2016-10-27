@@ -1,5 +1,7 @@
+@import '../../styles/abstracts/variables';
+
 .header-logo {
-  height: 50px;
+  height: $header-height;
   line-height: 50px;
   font-size: 1.6em;
   padding-left: 24px;

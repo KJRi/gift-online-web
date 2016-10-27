@@ -1,16 +1,18 @@
+@import '../../styles/abstracts/variables';
+
 .side-nav {
-  margin-top: 50px;
+  margin-top: $header-height;
 }
 
 .side-nav__header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 241px;
+  width: $side-bar-width;
   z-index: 10;
   background-color: #FFFFFF;
-  border-bottom: 1px solid #e9e9e9;
-  border-right: 1px solid #e9e9e9;
+  border-bottom: $default-border;
+  border-right: $default-border;
 }
 
 .side-nav__menu {
