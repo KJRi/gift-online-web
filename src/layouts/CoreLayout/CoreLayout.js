@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 // import Header from '../../components/Header'
 import SideNav from '../../components/SideNav'
@@ -6,7 +7,7 @@ import 'antd/lib/style/css'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
 
-export const CoreLayout = ({ children }) => (
+export const CoreLayout = ({ children }: { children: HTMLElement}) => (
   <div className='core-layout'>
     {
       // <Header />

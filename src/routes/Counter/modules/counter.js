@@ -1,3 +1,6 @@
+// @flow
+import type { Dispatch } from 'redux'
+import type { Action } from 'store/reducers'
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -6,7 +9,7 @@ export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function increment (value = 1) {
+export function increment (value: number = 1): Object {
   return {
     type    : COUNTER_INCREMENT,
     payload : value
@@ -22,7 +25,7 @@ export function increment (value = 1) {
     reducer take care of this logic.  */
 
 export const doubleAsync = () => {
-  return (dispatch, getState) => {
+  return (dispatch: Dispatch<Action>, getState: () => Object) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         dispatch(increment(getState().counter))
@@ -48,7 +51,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = 0
-export default function counterReducer (state = initialState, action) {
+export default function counterReducer (state: number = initialState, action: Object) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

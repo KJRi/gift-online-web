@@ -1,9 +1,11 @@
+// @flow
 import { injectReducer } from '../../store/reducers'
+import type { Store } from 'redux'
 
-export default (store) => ({
+export default (store: Store<*, *>) => ({
   path : 'counter',
   /*  Async getComponent is only invoked when route matches   */
-  getComponent (nextState, cb) {
+  getComponent (nextState: Object, cb: () => void) {
     /*  Webpack - use 'require.ensure' to create a split point
         and embed an async module loader (jsonp) when bundling   */
     require.ensure([], (require) => {

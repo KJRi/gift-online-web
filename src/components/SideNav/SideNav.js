@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import { Menu, Icon } from 'antd'
 import HeaderLogo from 'components/HeaderLogo'
@@ -5,9 +6,19 @@ import './SideNav.scss'
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
-export default class SideNav extends React.Component {
+type Props = {
+}
 
-  constructor (props) {
+export default class SideNav extends React.Component {
+  props: Props
+
+  state: {
+    current: string
+  }
+
+  handleClick: (e: Object) => void
+
+  constructor (props: Props) {
     super(props)
 
     this.state = { current: '-1' }
@@ -15,7 +26,7 @@ export default class SideNav extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick (e) {
+  handleClick (e: Object) {
     this.setState({ current: e.key })
   }
 

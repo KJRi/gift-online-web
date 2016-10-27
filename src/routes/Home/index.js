@@ -1,3 +1,4 @@
+// @flow
 import HomeView from './components/HomeView'
 
 // Sync route definition

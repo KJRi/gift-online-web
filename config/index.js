@@ -33,6 +33,7 @@ const config = {
     cacheDirectory : true,
     plugins        : [
       'transform-runtime',
+      'transform-flow-strip-types',
       ['import', [{ 'libraryName': 'antd', 'style': 'css' }]]
     ],
     presets        : ['es2015', 'react', 'stage-0']

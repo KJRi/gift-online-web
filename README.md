@@ -2,7 +2,7 @@
 
 ## Features
 * [ant-design](https://github.com/ant-design/ant-design)
-* [flow.js](https://github.com/flowjs/flow.js)
+* [flow](https://github.com/facebook/flow)
 
 ## Plugins
 1. [Font-Awesome](#font-awesome)
