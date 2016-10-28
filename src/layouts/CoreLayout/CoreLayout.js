@@ -4,20 +4,20 @@ import React from 'react'
 import SideNav from '../../components/SideNav'
 // normalize with antd and add icons & animations
 import 'antd/lib/style/css'
-import './CoreLayout.scss'
-import '../../styles/core.scss'
+import styles from './CoreLayout.css'
+import '../../styles/core.css'
 
 export const CoreLayout = ({ children }: { children: HTMLElement}) => (
-  <div className='core-layout'>
+  <div className={styles['core-layout']}>
     {
       // <Header />
     }
-    <div className='core-layout__side-nav'>
-      <div className='core-layout__side-nav__inner'>
+    <div className={styles['side-nav']}>
+      <div className={styles['side-nav__inner']}>
         <SideNav />
       </div>
     </div>
-    <div className='core-layout__viewport'>
+    <div className={styles['viewport']}>
       {children}
     </div>
   </div>

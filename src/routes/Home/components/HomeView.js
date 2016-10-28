@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import './HomeView.scss'
+import './HomeView.css'
 
 export const HomeView = () => (
   <div>

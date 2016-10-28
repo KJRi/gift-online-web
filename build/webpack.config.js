@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const values = require('postcss-modules-values')
 const config = require('../config')
 const debug = require('debug')('app:webpack:config')
 
@@ -108,24 +109,35 @@ webpackConfig.module.loaders = [{
 // ------------------------------------
 // We use cssnano with the postcss loader, so we tell
 // css-loader not to duplicate minimization.
-const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
+const CSS_LOADER_CONFIG = [
+  'sourceMap',
+  '-minimize'
+]
+
+const CSS_LOADER_MODULES_CONFIG = [
+  'sourceMap',
+  '-minimize',
+  'modules',
+  'importLoaders=1',
+  'localIdentName=[name]__[local]___[hash:base64:5]'
+]
 
 webpackConfig.module.loaders.push({
-  test    : /\.scss$/,
-  exclude : null,
+  test    : /\.css$/,
+  exclude : /node_modules/,
   loaders : [
     'style',
-    BASE_CSS_LOADER,
-    'postcss',
-    'sass?sourceMap'
+    'css?' + CSS_LOADER_MODULES_CONFIG.join('&'),
+    'postcss'
   ]
 })
+
 webpackConfig.module.loaders.push({
   test    : /\.css$/,
-  exclude : null,
+  include : /node_modules/,
   loaders : [
     'style',
-    BASE_CSS_LOADER,
+    'css?' + CSS_LOADER_CONFIG.join('&'),
     'postcss'
   ]
 })
@@ -135,6 +147,7 @@ webpackConfig.sassLoader = {
 }
 
 webpackConfig.postcss = [
+  values,
   cssnano({
     autoprefixer : {
       add      : true,

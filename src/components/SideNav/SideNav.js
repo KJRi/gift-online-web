@@ -2,7 +2,7 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
 import HeaderLogo from 'components/HeaderLogo'
-import './SideNav.scss'
+import styles from './SideNav.css'
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
@@ -32,11 +32,11 @@ export default class SideNav extends React.Component {
 
   render () {
     return (
-      <div className='side-nav'>
-        <div className='side-nav__header'>
+      <div className={styles['side-nav']}>
+        <div className={styles['header']}>
           <HeaderLogo />
         </div>
-        <div className='side-nav__menu'>
+        <div className={styles['menu']}>
           <Menu onClick={this.handleClick}
             style={{ width: 240 }}
             defaultOpenKeys={['sub1']}
