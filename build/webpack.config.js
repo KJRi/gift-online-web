@@ -2,6 +2,8 @@ const webpack = require('webpack')
 const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const mixins = require('postcss-mixins')
+const nested = require('postcss-nested')
 const values = require('postcss-modules-values')
 const config = require('../config')
 const debug = require('debug')('app:webpack:config')
@@ -147,6 +149,8 @@ webpackConfig.sassLoader = {
 }
 
 webpackConfig.postcss = [
+  mixins,
+  nested,
   values,
   cssnano({
     autoprefixer : {
