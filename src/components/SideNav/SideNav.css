@@ -1,5 +1,5 @@
 /* import your vars... */
-@value vars: "../../styles/variables.css";
+@value vars: "../../styles/abstracts/variables.css";
 @value header-height, default-border, side-bar-width from vars;
 
 .side-nav {

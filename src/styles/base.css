@@ -2,12 +2,12 @@
 Application Settings Go Here
 */
 
-// Configuration and helpers
-@import
+/*Configuration and helpers*/
+/*@import
   './abstracts/variables',
   './abstracts/functions',
-  './abstracts/mixins';
+  './abstracts/mixins';*/
 
-// Themes
-@import
-  './themes/default';
+/*Themes*/
+/*@import
+  './themes/default';*/

@@ -1,5 +1,5 @@
 /* import your vars... */
-@value vars: "../../styles/variables.css";
+@value vars: "../../styles/abstracts/variables.css";
 @value side-bar-width, side-bar-inner-width, default-border from vars;
 
 
