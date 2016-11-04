@@ -2,14 +2,14 @@
 @value vars: "../../styles/variables.css";
 @value header-height from vars;
 
-.header-logo {
+.logo {
   height: header-height;
   line-height: 50px;
   font-size: 1.6em;
   padding-left: 24px;
 }
 
-.header-logo img {
+.logo img {
   height: 32px;
   width: 32px;
   margin-bottom: -3px;

@@ -18,6 +18,6 @@
 }
 
 .menu {
-  // 如果要让menu滚动后覆盖header，将position设置设置为relative
+  /*如果要让menu滚动后覆盖header，将position设置设置为relative*/
   z-index: 1;
 }
