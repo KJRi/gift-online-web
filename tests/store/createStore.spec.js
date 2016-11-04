@@ -1,5 +1,5 @@
 import {
-  default as createStore
+  default as createStore, storeHelper
 } from 'store/createStore'
 
 describe('(Store) createStore', () => {
@@ -10,8 +10,8 @@ describe('(Store) createStore', () => {
   })
 
   it('should have an empty asyncReducers object', () => {
-    expect(store.asyncReducers).to.be.an('object')
-    expect(store.asyncReducers).to.be.empty
+    expect(storeHelper.asyncReducers).to.be.an('object')
+    expect(storeHelper.asyncReducers).to.be.empty
   })
 
   describe('(Location)', () => {
