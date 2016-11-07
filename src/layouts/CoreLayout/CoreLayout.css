@@ -1,7 +1,7 @@
 /* import your vars... */
 @value vars: "../../styles/abstracts/variables.css";
-@value side-bar-width, side-bar-inner-width, default-border from vars;
-
+@value header-height, side-bar-width, side-bar-inner-width from vars;
+@value default-border, viewport-padding from vars;
 
 .core-layout {
   height: 100%;
@@ -29,7 +29,23 @@
 
 .viewport {
   padding: 0 20px;
-  height: 100%;
+  height: calc(100% - header-height);
   /*奇迹：overflow会使viewport的宽度去掉左侧的side-nav的宽度*/
   overflow: auto;
+}
+
+.logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: side-bar-width;
+  z-index: 10;
+  background-color: #FFFFFF;
+  border-bottom: default-border;
+  /*border-right: default-border;*/
+}
+
+.settings {
+  overflow: auto;
+  border-bottom: default-border;
 }

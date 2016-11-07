@@ -6,17 +6,6 @@
   margin-top: header-height;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: side-bar-width;
-  z-index: 10;
-  background-color: #FFFFFF;
-  border-bottom: default-border;
-  border-right: default-border;
-}
-
 .menu {
   /*如果要让menu滚动后覆盖header，将position设置设置为relative*/
   z-index: 1;

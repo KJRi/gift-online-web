@@ -1,0 +1,8 @@
+@value vars: "../../styles/abstracts/variables.css";
+@value header-height, viewport-padding from vars;
+
+.nav {
+  height: header-height;
+  line-height: header-height;
+  padding: 0 viewport-padding;
+}
