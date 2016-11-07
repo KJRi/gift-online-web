@@ -91,6 +91,4 @@ npm i -S redux-storage-decorator-filter
 npm i -S redux-storage-engine-localstorage
 ```
 
-
-
 > 关于这个starter kit的更多信息，请查看[davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
