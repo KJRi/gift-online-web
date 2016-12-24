@@ -1,14 +1,19 @@
 const argv = require('yargs').argv
 const webpack = require('webpack')
-const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = require('./project.config')
 const debug = require('debug')('app:config:webpack')
 
+const cssnano = require('cssnano')
+const atImport = require('postcss-import')
+const atEach = require('postcss-each')
+const atVariables = require('postcss-at-rules-variables')
+const atIf = require('postcss-conditionals')
+const atFor = require('postcss-for')
+const customProperties = require('postcss-custom-properties')
 const mixins = require('postcss-mixins')
 const nested = require('postcss-nested')
-const values = require('postcss-modules-values')
 
 const __DEV__ = project.globals.__DEV__
 const __PROD__ = project.globals.__PROD__
@@ -174,9 +179,19 @@ webpackConfig.sassLoader = {
 }
 
 webpackConfig.postcss = [
-  mixins,
-  nested,
-  values,
+  atVariables({ /* atRules: ['media'] */ }),
+  atEach(),
+  atImport({
+    plugins: [
+      require('postcss-at-rules-variables')({ /* options */ }),
+      require('postcss-import')
+    ]
+  }),
+  atFor(),
+  atIf(),
+  customProperties(),
+  nested(),
+  mixins(),
   cssnano({
     autoprefixer : {
       add      : true,

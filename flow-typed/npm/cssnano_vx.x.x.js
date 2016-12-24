@@ -1,4 +1,4 @@
-// flow-typed signature: 4e298a3fde8ab378511726cda790ce78
+// flow-typed signature: e68af5c0a1ef38d8372fca3bbbbaad41
 // flow-typed version: <<STUB>>/cssnano_v^3.7.4/flow_v0.33.0
 
 /**
@@ -74,6 +74,10 @@ declare module 'cssnano/dist/lib/warnOnce' {
   declare module.exports: any;
 }
 
+declare module 'cssnano/quickstart' {
+  declare module.exports: any;
+}
+
 // Filename aliases
 declare module 'cssnano/dist/index.js' {
   declare module.exports: $Exports<'cssnano/dist/index'>;
@@ -113,4 +117,7 @@ declare module 'cssnano/dist/lib/styleCache.js' {
 }
 declare module 'cssnano/dist/lib/warnOnce.js' {
   declare module.exports: $Exports<'cssnano/dist/lib/warnOnce'>;
+}
+declare module 'cssnano/quickstart.js' {
+  declare module.exports: $Exports<'cssnano/quickstart'>;
 }

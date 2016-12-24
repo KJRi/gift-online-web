@@ -1,9 +1,7 @@
-/* import your vars... */
-@value vars: "../../styles/abstracts/variables.css";
-@value header-height from vars;
+@import "../../styles/abstracts/variables.css";
 
 .logo {
-  height: header-height;
+  height: var(--header-height);
   line-height: 50px;
   font-size: 1.6em;
   padding-left: 24px;

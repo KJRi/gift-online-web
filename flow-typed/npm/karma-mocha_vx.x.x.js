@@ -1,4 +1,4 @@
-// flow-typed signature: c4c2f947ebe02f0fca98b33a35772a58
+// flow-typed signature: 13cafd5b96d83d4097f0cb016b5ef719
 // flow-typed version: <<STUB>>/karma-mocha_v^1.0.1/flow_v0.33.0
 
 /**
@@ -34,6 +34,10 @@ declare module 'karma-mocha/lib/index' {
   declare module.exports: any;
 }
 
+declare module 'karma-mocha/wallaby' {
+  declare module.exports: any;
+}
+
 // Filename aliases
 declare module 'karma-mocha/gruntfile.js' {
   declare module.exports: $Exports<'karma-mocha/gruntfile'>;
@@ -43,4 +47,7 @@ declare module 'karma-mocha/lib/adapter.js' {
 }
 declare module 'karma-mocha/lib/index.js' {
   declare module.exports: $Exports<'karma-mocha/lib/index'>;
+}
+declare module 'karma-mocha/wallaby.js' {
+  declare module.exports: $Exports<'karma-mocha/wallaby'>;
 }

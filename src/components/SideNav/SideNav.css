@@ -1,9 +1,7 @@
-/* import your vars... */
-@value vars: "../../styles/abstracts/variables.css";
-@value header-height, default-border, side-bar-width from vars;
+@import "../../styles/abstracts/variables.css";
 
 .side-nav {
-  margin-top: header-height;
+  margin-top: var(--header-height);
 }
 
 .menu {

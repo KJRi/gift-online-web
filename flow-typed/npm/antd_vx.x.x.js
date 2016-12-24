@@ -1,4 +1,4 @@
-// flow-typed signature: 027094f6bc1fd3cfab2e19b67297a563
+// flow-typed signature: 3360fa6d2a9139b14cebf8ac49f8a0c3
 // flow-typed version: <<STUB>>/antd_v^2.1.0/flow_v0.33.0
 
 /**
@@ -54,6 +54,10 @@ declare module 'antd/lib/_util/splitObject' {
   declare module.exports: any;
 }
 
+declare module 'antd/lib/_util/warning' {
+  declare module.exports: any;
+}
+
 declare module 'antd/lib/affix/index' {
   declare module.exports: any;
 }
@@ -75,6 +79,26 @@ declare module 'antd/lib/alert/style/css' {
 }
 
 declare module 'antd/lib/alert/style/index' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/anchor/anchorHelper' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/anchor/AnchorLink' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/anchor/index' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/anchor/style/css' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/anchor/style/index' {
   declare module.exports: any;
 }
 
@@ -171,6 +195,10 @@ declare module 'antd/lib/calendar/index' {
 }
 
 declare module 'antd/lib/calendar/locale/en_US' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/calendar/locale/pt_BR' {
   declare module.exports: any;
 }
 
@@ -282,6 +310,10 @@ declare module 'antd/lib/date-picker/locale/en_US' {
   declare module.exports: any;
 }
 
+declare module 'antd/lib/date-picker/locale/pt_BR' {
+  declare module.exports: any;
+}
+
 declare module 'antd/lib/date-picker/locale/ru_RU' {
   declare module.exports: any;
 }
@@ -350,6 +382,26 @@ declare module 'antd/lib/form/style/index' {
   declare module.exports: any;
 }
 
+declare module 'antd/lib/grid/col' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/grid/index' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/grid/row' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/grid/style/css' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/grid/style/index' {
+  declare module.exports: any;
+}
+
 declare module 'antd/lib/icon/index' {
   declare module.exports: any;
 }
@@ -394,31 +446,15 @@ declare module 'antd/lib/input/Input' {
   declare module.exports: any;
 }
 
+declare module 'antd/lib/input/Search' {
+  declare module.exports: any;
+}
+
 declare module 'antd/lib/input/style/css' {
   declare module.exports: any;
 }
 
 declare module 'antd/lib/input/style/index' {
-  declare module.exports: any;
-}
-
-declare module 'antd/lib/layout/col' {
-  declare module.exports: any;
-}
-
-declare module 'antd/lib/layout/index' {
-  declare module.exports: any;
-}
-
-declare module 'antd/lib/layout/row' {
-  declare module.exports: any;
-}
-
-declare module 'antd/lib/layout/style/css' {
-  declare module.exports: any;
-}
-
-declare module 'antd/lib/layout/style/index' {
   declare module.exports: any;
 }
 
@@ -431,6 +467,10 @@ declare module 'antd/lib/locale-provider/es_ES' {
 }
 
 declare module 'antd/lib/locale-provider/index' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/locale-provider/pt_BR' {
   declare module.exports: any;
 }
 
@@ -523,6 +563,10 @@ declare module 'antd/lib/pagination/index' {
 }
 
 declare module 'antd/lib/pagination/locale/en_US' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/pagination/locale/pt_BR' {
   declare module.exports: any;
 }
 
@@ -702,11 +746,35 @@ declare module 'antd/lib/switch/style/index' {
   declare module.exports: any;
 }
 
+declare module 'antd/lib/table/Column' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/table/ColumnGroup' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/table/createStore' {
+  declare module.exports: any;
+}
+
 declare module 'antd/lib/table/filterDropdown' {
   declare module.exports: any;
 }
 
+declare module 'antd/lib/table/FilterDropdownMenuWrapper' {
+  declare module.exports: any;
+}
+
 declare module 'antd/lib/table/index' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/table/SelectionBox' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/table/SelectionCheckboxAll' {
   declare module.exports: any;
 }
 
@@ -738,6 +806,10 @@ declare module 'antd/lib/tabs/style/index' {
   declare module.exports: any;
 }
 
+declare module 'antd/lib/tag/CheckableTag' {
+  declare module.exports: any;
+}
+
 declare module 'antd/lib/tag/index' {
   declare module.exports: any;
 }
@@ -755,6 +827,10 @@ declare module 'antd/lib/time-picker/index' {
 }
 
 declare module 'antd/lib/time-picker/locale/en_US' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/time-picker/locale/pt_BR' {
   declare module.exports: any;
 }
 
@@ -811,6 +887,10 @@ declare module 'antd/lib/tooltip/style/index' {
 }
 
 declare module 'antd/lib/transfer/index' {
+  declare module.exports: any;
+}
+
+declare module 'antd/lib/transfer/item' {
   declare module.exports: any;
 }
 
@@ -911,6 +991,9 @@ declare module 'antd/lib/_util/openAnimation.js' {
 declare module 'antd/lib/_util/splitObject.js' {
   declare module.exports: $Exports<'antd/lib/_util/splitObject'>;
 }
+declare module 'antd/lib/_util/warning.js' {
+  declare module.exports: $Exports<'antd/lib/_util/warning'>;
+}
 declare module 'antd/lib/affix/index.js' {
   declare module.exports: $Exports<'antd/lib/affix/index'>;
 }
@@ -928,6 +1011,21 @@ declare module 'antd/lib/alert/style/css.js' {
 }
 declare module 'antd/lib/alert/style/index.js' {
   declare module.exports: $Exports<'antd/lib/alert/style/index'>;
+}
+declare module 'antd/lib/anchor/anchorHelper.js' {
+  declare module.exports: $Exports<'antd/lib/anchor/anchorHelper'>;
+}
+declare module 'antd/lib/anchor/AnchorLink.js' {
+  declare module.exports: $Exports<'antd/lib/anchor/AnchorLink'>;
+}
+declare module 'antd/lib/anchor/index.js' {
+  declare module.exports: $Exports<'antd/lib/anchor/index'>;
+}
+declare module 'antd/lib/anchor/style/css.js' {
+  declare module.exports: $Exports<'antd/lib/anchor/style/css'>;
+}
+declare module 'antd/lib/anchor/style/index.js' {
+  declare module.exports: $Exports<'antd/lib/anchor/style/index'>;
 }
 declare module 'antd/lib/auto-complete/index.js' {
   declare module.exports: $Exports<'antd/lib/auto-complete/index'>;
@@ -1000,6 +1098,9 @@ declare module 'antd/lib/calendar/index.js' {
 }
 declare module 'antd/lib/calendar/locale/en_US.js' {
   declare module.exports: $Exports<'antd/lib/calendar/locale/en_US'>;
+}
+declare module 'antd/lib/calendar/locale/pt_BR.js' {
+  declare module.exports: $Exports<'antd/lib/calendar/locale/pt_BR'>;
 }
 declare module 'antd/lib/calendar/locale/ru_RU.js' {
   declare module.exports: $Exports<'antd/lib/calendar/locale/ru_RU'>;
@@ -1082,6 +1183,9 @@ declare module 'antd/lib/date-picker/index.js' {
 declare module 'antd/lib/date-picker/locale/en_US.js' {
   declare module.exports: $Exports<'antd/lib/date-picker/locale/en_US'>;
 }
+declare module 'antd/lib/date-picker/locale/pt_BR.js' {
+  declare module.exports: $Exports<'antd/lib/date-picker/locale/pt_BR'>;
+}
 declare module 'antd/lib/date-picker/locale/ru_RU.js' {
   declare module.exports: $Exports<'antd/lib/date-picker/locale/ru_RU'>;
 }
@@ -1133,6 +1237,21 @@ declare module 'antd/lib/form/style/css.js' {
 declare module 'antd/lib/form/style/index.js' {
   declare module.exports: $Exports<'antd/lib/form/style/index'>;
 }
+declare module 'antd/lib/grid/col.js' {
+  declare module.exports: $Exports<'antd/lib/grid/col'>;
+}
+declare module 'antd/lib/grid/index.js' {
+  declare module.exports: $Exports<'antd/lib/grid/index'>;
+}
+declare module 'antd/lib/grid/row.js' {
+  declare module.exports: $Exports<'antd/lib/grid/row'>;
+}
+declare module 'antd/lib/grid/style/css.js' {
+  declare module.exports: $Exports<'antd/lib/grid/style/css'>;
+}
+declare module 'antd/lib/grid/style/index.js' {
+  declare module.exports: $Exports<'antd/lib/grid/style/index'>;
+}
 declare module 'antd/lib/icon/index.js' {
   declare module.exports: $Exports<'antd/lib/icon/index'>;
 }
@@ -1166,26 +1285,14 @@ declare module 'antd/lib/input/index.js' {
 declare module 'antd/lib/input/Input.js' {
   declare module.exports: $Exports<'antd/lib/input/Input'>;
 }
+declare module 'antd/lib/input/Search.js' {
+  declare module.exports: $Exports<'antd/lib/input/Search'>;
+}
 declare module 'antd/lib/input/style/css.js' {
   declare module.exports: $Exports<'antd/lib/input/style/css'>;
 }
 declare module 'antd/lib/input/style/index.js' {
   declare module.exports: $Exports<'antd/lib/input/style/index'>;
-}
-declare module 'antd/lib/layout/col.js' {
-  declare module.exports: $Exports<'antd/lib/layout/col'>;
-}
-declare module 'antd/lib/layout/index.js' {
-  declare module.exports: $Exports<'antd/lib/layout/index'>;
-}
-declare module 'antd/lib/layout/row.js' {
-  declare module.exports: $Exports<'antd/lib/layout/row'>;
-}
-declare module 'antd/lib/layout/style/css.js' {
-  declare module.exports: $Exports<'antd/lib/layout/style/css'>;
-}
-declare module 'antd/lib/layout/style/index.js' {
-  declare module.exports: $Exports<'antd/lib/layout/style/index'>;
 }
 declare module 'antd/lib/locale-provider/en_US.js' {
   declare module.exports: $Exports<'antd/lib/locale-provider/en_US'>;
@@ -1195,6 +1302,9 @@ declare module 'antd/lib/locale-provider/es_ES.js' {
 }
 declare module 'antd/lib/locale-provider/index.js' {
   declare module.exports: $Exports<'antd/lib/locale-provider/index'>;
+}
+declare module 'antd/lib/locale-provider/pt_BR.js' {
+  declare module.exports: $Exports<'antd/lib/locale-provider/pt_BR'>;
 }
 declare module 'antd/lib/locale-provider/ru_RU.js' {
   declare module.exports: $Exports<'antd/lib/locale-provider/ru_RU'>;
@@ -1264,6 +1374,9 @@ declare module 'antd/lib/pagination/index.js' {
 }
 declare module 'antd/lib/pagination/locale/en_US.js' {
   declare module.exports: $Exports<'antd/lib/pagination/locale/en_US'>;
+}
+declare module 'antd/lib/pagination/locale/pt_BR.js' {
+  declare module.exports: $Exports<'antd/lib/pagination/locale/pt_BR'>;
 }
 declare module 'antd/lib/pagination/locale/zh_CN.js' {
   declare module.exports: $Exports<'antd/lib/pagination/locale/zh_CN'>;
@@ -1397,11 +1510,29 @@ declare module 'antd/lib/switch/style/css.js' {
 declare module 'antd/lib/switch/style/index.js' {
   declare module.exports: $Exports<'antd/lib/switch/style/index'>;
 }
+declare module 'antd/lib/table/Column.js' {
+  declare module.exports: $Exports<'antd/lib/table/Column'>;
+}
+declare module 'antd/lib/table/ColumnGroup.js' {
+  declare module.exports: $Exports<'antd/lib/table/ColumnGroup'>;
+}
+declare module 'antd/lib/table/createStore.js' {
+  declare module.exports: $Exports<'antd/lib/table/createStore'>;
+}
 declare module 'antd/lib/table/filterDropdown.js' {
   declare module.exports: $Exports<'antd/lib/table/filterDropdown'>;
 }
+declare module 'antd/lib/table/FilterDropdownMenuWrapper.js' {
+  declare module.exports: $Exports<'antd/lib/table/FilterDropdownMenuWrapper'>;
+}
 declare module 'antd/lib/table/index.js' {
   declare module.exports: $Exports<'antd/lib/table/index'>;
+}
+declare module 'antd/lib/table/SelectionBox.js' {
+  declare module.exports: $Exports<'antd/lib/table/SelectionBox'>;
+}
+declare module 'antd/lib/table/SelectionCheckboxAll.js' {
+  declare module.exports: $Exports<'antd/lib/table/SelectionCheckboxAll'>;
 }
 declare module 'antd/lib/table/style/css.js' {
   declare module.exports: $Exports<'antd/lib/table/style/css'>;
@@ -1424,6 +1555,9 @@ declare module 'antd/lib/tabs/style/css.js' {
 declare module 'antd/lib/tabs/style/index.js' {
   declare module.exports: $Exports<'antd/lib/tabs/style/index'>;
 }
+declare module 'antd/lib/tag/CheckableTag.js' {
+  declare module.exports: $Exports<'antd/lib/tag/CheckableTag'>;
+}
 declare module 'antd/lib/tag/index.js' {
   declare module.exports: $Exports<'antd/lib/tag/index'>;
 }
@@ -1438,6 +1572,9 @@ declare module 'antd/lib/time-picker/index.js' {
 }
 declare module 'antd/lib/time-picker/locale/en_US.js' {
   declare module.exports: $Exports<'antd/lib/time-picker/locale/en_US'>;
+}
+declare module 'antd/lib/time-picker/locale/pt_BR.js' {
+  declare module.exports: $Exports<'antd/lib/time-picker/locale/pt_BR'>;
 }
 declare module 'antd/lib/time-picker/locale/ru_RU.js' {
   declare module.exports: $Exports<'antd/lib/time-picker/locale/ru_RU'>;
@@ -1480,6 +1617,9 @@ declare module 'antd/lib/tooltip/style/index.js' {
 }
 declare module 'antd/lib/transfer/index.js' {
   declare module.exports: $Exports<'antd/lib/transfer/index'>;
+}
+declare module 'antd/lib/transfer/item.js' {
+  declare module.exports: $Exports<'antd/lib/transfer/item'>;
 }
 declare module 'antd/lib/transfer/list.js' {
   declare module.exports: $Exports<'antd/lib/transfer/list'>;

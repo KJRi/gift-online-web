@@ -1,4 +1,4 @@
-// flow-typed signature: cc4deb72e0d6761c13be000a3b524a4b
+// flow-typed signature: f39fc2e18a9cdade9521649651b5ac73
 // flow-typed version: <<STUB>>/eslint-plugin-react_v^6.0.0/flow_v0.33.0
 
 /**
@@ -111,6 +111,10 @@ declare module 'eslint-plugin-react/lib/rules/jsx-sort-props' {
 }
 
 declare module 'eslint-plugin-react/lib/rules/jsx-space-before-closing' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-react/lib/rules/jsx-tag-spacing' {
   declare module.exports: any;
 }
 
@@ -246,6 +250,10 @@ declare module 'eslint-plugin-react/lib/util/Components' {
   declare module.exports: any;
 }
 
+declare module 'eslint-plugin-react/lib/util/getTokenBeforeClosingBracket' {
+  declare module.exports: any;
+}
+
 declare module 'eslint-plugin-react/lib/util/pragma' {
   declare module.exports: any;
 }
@@ -333,6 +341,9 @@ declare module 'eslint-plugin-react/lib/rules/jsx-sort-props.js' {
 }
 declare module 'eslint-plugin-react/lib/rules/jsx-space-before-closing.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/jsx-space-before-closing'>;
+}
+declare module 'eslint-plugin-react/lib/rules/jsx-tag-spacing.js' {
+  declare module.exports: $Exports<'eslint-plugin-react/lib/rules/jsx-tag-spacing'>;
 }
 declare module 'eslint-plugin-react/lib/rules/jsx-uses-react.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/rules/jsx-uses-react'>;
@@ -432,6 +443,9 @@ declare module 'eslint-plugin-react/lib/rules/wrap-multilines.js' {
 }
 declare module 'eslint-plugin-react/lib/util/Components.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/util/Components'>;
+}
+declare module 'eslint-plugin-react/lib/util/getTokenBeforeClosingBracket.js' {
+  declare module.exports: $Exports<'eslint-plugin-react/lib/util/getTokenBeforeClosingBracket'>;
 }
 declare module 'eslint-plugin-react/lib/util/pragma.js' {
   declare module.exports: $Exports<'eslint-plugin-react/lib/util/pragma'>;
