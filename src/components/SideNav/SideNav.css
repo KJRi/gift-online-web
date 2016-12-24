@@ -1,10 +1,21 @@
 @import "../../styles/abstracts/variables.css";
 
-.side-nav {
+.nav {
   margin-top: var(--header-height);
 }
 
-.menu {
-  /*如果要让menu滚动后覆盖header，将position设置设置为relative*/
+.nav__menu {
   z-index: 1;
+  width: calc(var(--side-bar-width) - 1px);
+}
+
+.nav__menu :global {
+  .ant-menu-item {
+    border-right: 0;
+  }
+  .ant-menu-item-selected, .ant-menu-selected {
+    border-right: 3px solid #108ee9;
+    transform: translateZ(0);
+    transition: border 0s ease;
+  }
 }
