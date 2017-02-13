@@ -47,6 +47,7 @@ const karmaConfig = {
       'react/lib/ExecutionEnvironment' : true,
       'react/lib/ReactContext'         : 'window'
     }),
+    postcss: webpackConfig.postcss,
     sassLoader : webpackConfig.sassLoader
   },
   webpackMiddleware : {
