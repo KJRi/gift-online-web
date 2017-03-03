@@ -109,7 +109,8 @@ if (__DEV__) {
         dead_code : true,
         warnings  : false
       }
-    })
+    }),
+    new webpack.optimize.AggressiveMergingPlugin()
   )
 }
 
