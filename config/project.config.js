@@ -37,7 +37,7 @@ const config = {
       'transform-flow-strip-types',
       ['import', [{ 'libraryName': 'antd', 'style': 'css' }]]
     ],
-    presets        : ['es2015', 'react', 'stage-0']
+    presets        : ['latest', 'react', 'stage-0']
   },
   compiler_devtool         : 'source-map',
   compiler_hash_type       : 'hash',
