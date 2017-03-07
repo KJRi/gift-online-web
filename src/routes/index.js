@@ -3,6 +3,7 @@
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
+import GithubReposRoute from './GithubRepos'
 import type { Store } from 'redux'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -13,7 +14,8 @@ export const createRoutes = (store: Store<*, *>) => ({
   component   : CoreLayout,
   indexRoute  : Home,
   childRoutes : [
-    CounterRoute(store)
+    CounterRoute(store),
+    GithubReposRoute(store)
   ]
 })
 
