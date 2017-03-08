@@ -1,12 +1,15 @@
 // @flow
 import React, { Component } from 'react'
-import { browserHistory, Router } from 'react-router'
+import BrowserRouter from 'react-router-dom/BrowserRouter'
+import CoreLayout from 'layouts/CoreLayout'
 import { Provider } from 'react-redux'
 
 type Props = {
   routes: Object,
   store: Object
 }
+
+const supportsHistory = 'pushState' in window.history
 
 export class AppContainer extends Component {
   props: Props
@@ -16,13 +19,15 @@ export class AppContainer extends Component {
   }
 
   render () {
-    const { routes, store } = this.props
+    const { store, routes } = this.props
 
     return (
       <Provider store={store}>
-        <div style={{ height: '100%' }}>
-          <Router history={browserHistory} children={routes} />
-        </div>
+        <BrowserRouter forceRefresh={!supportsHistory} keyLength={12}>
+          <div style={{ height: '100%' }}>
+            <CoreLayout {...{ routes }} />
+          </div>
+        </BrowserRouter>
       </Provider>
     )
   }

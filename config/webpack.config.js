@@ -88,15 +88,14 @@ if (__TEST__ && !argv.watch) {
 if (__DEV__) {
   debug('Enabling plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.HotModuleReplacementPlugin()
   )
 } else if (__PROD__) {
   debug('Enabling plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap : true,
       compress : {
-        sourceMap : true,
         unused    : true,
         dead_code : true,
         warnings  : true
@@ -110,7 +109,7 @@ if (__DEV__) {
 if (!__TEST__) {
   webpackConfig.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
-      names : ['vendor']
+      names : ['vendor', 'manifest']
     })
   )
 }
@@ -270,7 +269,8 @@ if (!__DEV__) {
   })
 
   webpackConfig.plugins.push(
-    new ExtractTextPlugin('[name].[contenthash].css', {
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash].css',
       allChunks : true
     })
   )

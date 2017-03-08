@@ -80,6 +80,5 @@ const initialState = {
 
 export default function githubReposReducer (state: State = initialState, action: Object) {
   const handler = ACTION_HANDLERS[action.type]
-
   return handler ? handler(state, action) : state
 }

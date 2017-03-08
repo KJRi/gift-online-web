@@ -45,7 +45,7 @@ export class GithubReposView extends React.Component {
   }
 
   render () {
-    const { isFetching, data } = this.props.repos
+    const { isFetching, data } = this.props.repos || {}
     return (
       <div>
         <Table columns={columns} dataSource={data} size='middle'

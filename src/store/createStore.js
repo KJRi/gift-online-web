@@ -1,9 +1,8 @@
 // @flow
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
-import { updateLocation } from './location'
+// import { updateLocation } from './location'
 
 export const storeHelper: {asyncReducers: Object; unsubscribeHistory?: Object} = {
   asyncReducers: {}
@@ -29,6 +28,9 @@ export default (initialState: Object = {}) => {
     }
   }
 
+  // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
+  // storeHelper.unsubscribeHistory = browserHistory.listen(updateLocation(store))
+
   // ======================================================
   // Store Instantiation and HMR Setup
   // ======================================================
@@ -40,9 +42,6 @@ export default (initialState: Object = {}) => {
       ...enhancers
     )
   )
-
-  // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
-  storeHelper.unsubscribeHistory = browserHistory.listen(updateLocation(store))
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
