@@ -2,6 +2,7 @@
 import React from 'react'
 import Switch from 'react-router-dom/Switch'
 import Route from 'react-router-dom/Route'
+import routes from '../../routes'
 import SideNav from '../../components/SideNav'
 import HeaderLogo from 'components/HeaderLogo'
 import HeaderNav from '../../components/HeaderNav'
@@ -11,7 +12,7 @@ import 'antd/lib/style/css'
 import '../../styles/core.css'
 import styles from './CoreLayout.css'
 
-export const CoreLayout = ({ routes }: { routes: Object }) => (
+export const CoreLayout = () => (
   <div className={styles['core-layout']}>
     <div className={styles['logo']}>
       <HeaderLogo />
@@ -33,9 +34,5 @@ export const CoreLayout = ({ routes }: { routes: Object }) => (
     </div>
   </div>
 )
-
-CoreLayout.propTypes = {
-  routes : React.PropTypes.object.isRequired
-}
 
 export default CoreLayout

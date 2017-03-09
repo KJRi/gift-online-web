@@ -1,6 +1,6 @@
 // @flow
 
-import HomeView from './components/HomeView'
+import Home from './components/Home'
 
 // sync route
-export default HomeView
+export default Home

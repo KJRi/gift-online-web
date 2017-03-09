@@ -20,6 +20,7 @@ if (project.env === 'development') {
   debug('Enabling webpack dev and HMR middleware')
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath  : webpackConfig.output.publicPath,
+    historyApiFallback: true,
     contentBase : project.paths.client(),
     hot         : true,
     quiet       : project.compiler_quiet,
@@ -27,9 +28,7 @@ if (project.env === 'development') {
     lazy        : false,
     stats       : project.compiler_stats
   }))
-  app.use(require('webpack-hot-middleware')(compiler, {
-    path: '/__webpack_hmr'
-  }))
+  app.use(require('webpack-hot-middleware')(compiler))
 
   // Serve static assets from ~/public since Webpack is unaware of
   // these files. This middleware doesn't need to be enabled outside

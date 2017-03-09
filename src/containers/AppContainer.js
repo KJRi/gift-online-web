@@ -5,7 +5,6 @@ import CoreLayout from 'layouts/CoreLayout'
 import { Provider } from 'react-redux'
 
 type Props = {
-  routes: Object,
   store: Object
 }
 
@@ -19,13 +18,13 @@ export class AppContainer extends Component {
   }
 
   render () {
-    const { store, routes } = this.props
+    const { store } = this.props
 
     return (
       <Provider store={store}>
         <BrowserRouter forceRefresh={!supportsHistory} keyLength={12}>
           <div style={{ height: '100%' }}>
-            <CoreLayout {...{ routes }} />
+            <CoreLayout />
           </div>
         </BrowserRouter>
       </Provider>

@@ -1,7 +1,9 @@
 // @flow
 import { combineReducers } from 'redux'
 import type { Store } from 'redux'
-import locationReducer from './location'
+import location from './location'
+import counter from './modules/counter'
+import githubRepos from './modules/githubRepos'
 import { storeHelper } from './createStore'
 
 type AsyncReducers = { [key: string]: any }
@@ -10,7 +12,9 @@ export type Action = { type: string, payload?: any }
 
 export const makeRootReducer = (asyncReducers: AsyncReducers = {}) => {
   return combineReducers({
-    location: locationReducer,
+    location,
+    counter,
+    githubRepos,
     ...asyncReducers
   })
 }

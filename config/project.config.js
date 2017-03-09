@@ -31,15 +31,21 @@ const config = {
   // Compiler Configuration
   // ----------------------------------
   compiler_babel : {
+    babelrc        : false,
     cacheDirectory : true,
     plugins        : [
       'transform-runtime',
       'transform-flow-strip-types',
       ['import', [{ 'libraryName': 'antd', 'style': 'css' }]]
     ],
-    presets        : ['latest', 'react', 'stage-0']
+    presets        : [['latest', { es2015: { 'modules': false } }], 'stage-0', 'react'],
+    env            : {
+      development: {
+        plugins: [ 'react-hot-loader/babel' ]
+      }
+    }
   },
-  compiler_devtool         : 'source-map',
+  compiler_devtool         : 'eval-source-map',
   compiler_hash_type       : 'hash',
   compiler_fail_on_warning : false,
   compiler_quiet           : false,

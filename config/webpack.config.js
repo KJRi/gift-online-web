@@ -21,7 +21,8 @@ const webpackConfig = {
     ],
     extensions : ['.js', '.jsx', '.json']
   },
-  module : {}
+  module : {},
+  context: project.paths.client()
 }
 // ------------------------------------
 // Entry Points
@@ -30,7 +31,11 @@ const APP_ENTRY = project.paths.client('main.js')
 
 webpackConfig.entry = {
   app : __DEV__
-    ? [APP_ENTRY].concat(`webpack-hot-middleware/client?path=${project.compiler_public_path}__webpack_hmr`)
+    ? [
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
+      APP_ENTRY
+    ]
     : [APP_ENTRY],
   vendor : project.compiler_vendors
 }
@@ -88,7 +93,8 @@ if (__TEST__ && !argv.watch) {
 if (__DEV__) {
   debug('Enabling plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
   )
 } else if (__PROD__) {
   debug('Enabling plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
