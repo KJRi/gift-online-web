@@ -1,14 +1,14 @@
 // @flow
 import React from 'react'
 import { Menu, Icon } from 'antd'
-import styles from './SideNav.css'
+import styles from './SideMenu.css'
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
 type Props = {
 }
 
-export default class SideNav extends React.Component {
+export default class SideMenu extends React.Component {
   props: Props
 
   state: {

@@ -1,19 +1,18 @@
 @import "../../styles/abstracts/variables.css";
 
 .nav {
-  margin-top: var(--header-height);
 }
 
 .nav__menu {
   z-index: 1;
-  width: calc(var(--side-bar-width) - 1px);
+  margin-right: 1px;
 }
 
-.nav__menu :global {
-  .ant-menu-item {
+.nav__menu {
+  &:global(.ant-menu-inline), &:global(.ant-menu-vertical) {
     border-right: 0;
   }
-  .ant-menu-item-selected, .ant-menu-selected {
+  global(.ant-menu-item-selected, .ant-menu-selected) {
     border-right: 3px solid #108ee9;
     transform: translateZ(0);
     transition: border 0s ease;

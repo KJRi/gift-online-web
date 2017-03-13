@@ -1,19 +1,14 @@
 // @flow
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import Logo from 'components/Logo'
+import UserMenu from 'components/UserMenu'
 import styles from './Header.css'
 
-export const Header = () => (
-  <div>
-    <h1>React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName={styles['route--active']}>
-      Home
-    </IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName={styles['route--active']}>
-      Counter
-    </Link>
-  </div>
+const Header = () => (
+  <header className={styles['header']}>
+    <Logo />
+    <UserMenu />
+  </header>
 )
 
 export default Header

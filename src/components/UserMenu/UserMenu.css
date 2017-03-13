@@ -1,7 +1,7 @@
 @import "../../styles/abstracts/variables.css";
 
-.nav {
+.profile {
+  display: inline-block;
+  float: right;
   height: var(--header-height);
-  line-height: var(--header-height);
-  padding: 0 var(--viewport-padding);
 }
