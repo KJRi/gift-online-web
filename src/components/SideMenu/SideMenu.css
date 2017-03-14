@@ -3,18 +3,22 @@
 .nav {
 }
 
-.nav__menu {
+.menu {
   z-index: 1;
   margin-right: 1px;
 }
 
-.nav__menu {
+.menu {
   &:global(.ant-menu-inline), &:global(.ant-menu-vertical) {
     border-right: 0;
   }
-  global(.ant-menu-item-selected, .ant-menu-selected) {
+  :global(.ant-menu-item-selected, .ant-menu-selected) {
     border-right: 3px solid #108ee9;
     transform: translateZ(0);
     transition: border 0s ease;
+  }
+
+  :global(.ant-menu-item a) {
+    display: inline-block;
   }
 }

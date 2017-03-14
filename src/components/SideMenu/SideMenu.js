@@ -1,14 +1,17 @@
 // @flow
 import React from 'react'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
 import styles from './SideMenu.css'
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
 type Props = {
+  location: Location
 }
 
-export default class SideMenu extends React.Component {
+class SideMenu extends React.Component {
   props: Props
 
   state: {
@@ -25,6 +28,22 @@ export default class SideMenu extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentWillMount () {
+    const { location: { pathname } } = this.props
+    let key
+    switch (pathname) {
+      case '/':
+        key = '-1'
+        break
+      case '/github/k2data/repos':
+        key = '0'
+        break
+      default:
+        key = '-1'
+    }
+    this.setState({ current: key })
+  }
+
   handleClick (e: Object) {
     this.setState({ current: e.key })
   }
@@ -33,16 +52,17 @@ export default class SideMenu extends React.Component {
     return (
       <div className={styles['nav']}>
         <Menu onClick={this.handleClick}
-          defaultOpenKeys={['sub1']}
           selectedKeys={[this.state.current]}
           mode='inline'
-          className={styles['nav__menu']}
+          className={styles['menu']}
         >
           <Menu.Item key='-1'>
-            <Icon type='area-chart' />Option -1
+            <Icon type='area-chart' />
+            <Link to='/'>Home</Link>
           </Menu.Item>
           <Menu.Item key='0'>
-            <Icon type='book' />Option 0
+            <Icon type='github' />
+            <Link to='/github/k2data/repos'>Github</Link>
           </Menu.Item>
           <SubMenu key='sub1' title={<span><Icon type='mail' /><span>Navigation One</span></span>}>
             <MenuItemGroup title='Item 1'>
@@ -73,3 +93,5 @@ export default class SideMenu extends React.Component {
     )
   }
 }
+
+export default withRouter(SideMenu)
