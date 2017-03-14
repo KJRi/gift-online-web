@@ -20,16 +20,33 @@ class SideMenu extends React.Component {
 
   handleClick: (e: Object) => void
 
+  activeMenuItem: () => void
+
   constructor (props: Props) {
     super(props)
 
     this.state = { current: '-1' }
 
     this.handleClick = this.handleClick.bind(this)
+    this.activeMenuItem = this.activeMenuItem.bind(this)
   }
 
   componentWillMount () {
-    const { location: { pathname } } = this.props
+    const { location } = this.props
+    this.activeMenuItem(location)
+  }
+
+  componentWillReceiveProps (nextProps: Props) {
+    const { location } = nextProps
+    this.activeMenuItem(location)
+  }
+
+  handleClick (e: Object) {
+    this.setState({ current: e.key })
+  }
+
+  activeMenuItem (location: Location) {
+    const { pathname } = location
     let key
     switch (pathname) {
       case '/':
@@ -42,10 +59,6 @@ class SideMenu extends React.Component {
         key = '-1'
     }
     this.setState({ current: key })
-  }
-
-  handleClick (e: Object) {
-    this.setState({ current: e.key })
   }
 
   render () {
