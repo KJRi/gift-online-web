@@ -31,5 +31,10 @@
     "flowtype/valid-syntax"   : 1,
     "no-duplicate-imports"    : 0,
     "import/no-duplicates"    : 1
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
   }
 }
