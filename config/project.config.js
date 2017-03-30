@@ -38,7 +38,16 @@ const config = {
       'transform-flow-strip-types',
       ['import', [{ 'libraryName': 'antd', 'style': 'css' }]]
     ],
-    presets        : [['latest', { es2015: { 'modules': false } }], 'stage-0', 'react'],
+    presets        : [
+      ['env', {
+        targets: {
+          browsers: ['last 2 versions', 'safari >= 7']
+        },
+        modules: false
+      }],
+      'stage-0',
+      'react'
+    ],
     env            : {
       development: {
         plugins: [ 'react-hot-loader/babel' ]
