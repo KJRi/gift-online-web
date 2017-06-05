@@ -185,73 +185,39 @@ webpackConfig.module.rules.push({
   ]
 })
 
-// File rules
-/* eslint-disable */
-webpackConfig.module.rules.push(
-  {
-    test: /\.woff(\?.*)?$/,
-    loader: 'url-loader',
-    options: {
-      prefix  : 'fonts/&name=[path][name].[ext]',
-      limit   : 10000,
-      mimetype: 'application/font-woff'
-    }
-  },
-  {
-    test: /\.woff2(\?.*)?$/,
-    loader: 'url-loader',
-    options: {
-      prefix  : 'fonts/',
-      name    : '[path][name].[ext]',
-      limit   : 10000,
-      mimetype: 'application/font-woff2'
-    }
-  },
-  {
-    test: /\.otf(\?.*)?$/,
-    loader: 'file-loader',
-    options: {
-      prefix  : 'fonts/',
-      name    : '[path][name].[ext]',
-      limit   : 10000,
-      mimetype: 'font/opentype'
-    }
-  },
-  {
-    test: /\.ttf(\?.*)?$/,
-    loader: 'url-loader',
-    options: {
-      prefix  : 'fonts/',
-      name    : '[path][name].[ext]',
-      limit   : 10000,
-      mimetype: 'application/octet-stream'
-    }
-  },
-  {
-    test: /\.eot(\?.*)?$/,
-    loader: 'file-loader',
-    options: {
-      prefix  : 'fonts/',
-      name    : '[path][name].[ext]'
-    }
-  },
-  {
-    test: /\.svg(\?.*)?$/,
-    loader: 'url-loader',
-    options: {
-      prefix  : 'fonts/',
-      name    : '[path][name].[ext]',
-      limit   : 10000,
-      mimetype: 'image/svg+xml'
-    }
-  },
-  {
-    test: /\.(png|jpg)$/,
-    loader: 'url-loader',
-    options: { limit: 8192 }
+// Images
+// ------------------------------------
+webpackConfig.module.rules.push({
+  test    : /\.(png|jpg|gif)$/,
+  loader  : 'url-loader',
+  options : {
+    limit : 8192
   }
-)
-/* eslint-enable */
+})
+
+// Fonts
+// ------------------------------------
+;[
+  ['woff', 'application/font-woff'],
+  ['woff2', 'application/font-woff2'],
+  ['otf', 'font/opentype'],
+  ['ttf', 'application/octet-stream'],
+  ['eot', 'application/vnd.ms-fontobject'],
+  ['svg', 'image/svg+xml']
+].forEach((font) => {
+  const extension = font[0]
+  const mimetype = font[1]
+
+  webpackConfig.module.rules.push({
+    test    : new RegExp(`\\.${extension}$`),
+    loader  : 'url-loader',
+    options : {
+      name  : 'fonts/[name].[ext]',
+      limit : 10000,
+      mimetype
+    }
+  })
+})
 
 // ------------------------------------
 // Finalize Configuration
