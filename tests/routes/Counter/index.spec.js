@@ -7,11 +7,7 @@ describe('(Route) Counter', () => {
     _route = CounterRoute({})
   })
 
-  it('Should return a route configuration object', () => {
-    expect(typeof _route).to.equal('object')
-  })
-
-  it('Configuration should contain path `counter`', () => {
-    expect(_route.path).to.equal('counter')
+  it('Should return an async route function', () => {
+    expect(typeof _route).to.equal('function')
   })
 })
