@@ -10,7 +10,7 @@ const __PROD__ = project.globals.__PROD__
 const __TEST__ = project.globals.__TEST__
 
 debug('Creating configuration.')
-const webpackConfig = {
+const config = {
   name    : 'client',
   target  : 'web',
   devtool : project.compiler_devtool,
@@ -29,7 +29,7 @@ const webpackConfig = {
 // ------------------------------------
 const APP_ENTRY = project.paths.client('main.js')
 
-webpackConfig.entry = {
+config.entry = {
   app : __DEV__
     ? [
       'react-hot-loader/patch',
@@ -43,7 +43,7 @@ webpackConfig.entry = {
 // ------------------------------------
 // Bundle Output
 // ------------------------------------
-webpackConfig.output = {
+config.output = {
   filename   : `[name].[${project.compiler_hash_type}].js`,
   path       : project.paths.dist(),
   publicPath : project.compiler_public_path
@@ -52,15 +52,15 @@ webpackConfig.output = {
 // ------------------------------------
 // Externals
 // ------------------------------------
-webpackConfig.externals = {}
-webpackConfig.externals['react/lib/ExecutionEnvironment'] = true
-webpackConfig.externals['react/lib/ReactContext'] = true
-webpackConfig.externals['react/addons'] = true
+config.externals = {}
+config.externals['react/lib/ExecutionEnvironment'] = true
+config.externals['react/lib/ReactContext'] = true
+config.externals['react/addons'] = true
 
 // ------------------------------------
 // Plugins
 // ------------------------------------
-webpackConfig.plugins = [
+config.plugins = [
   new webpack.DefinePlugin(project.globals),
   new HtmlWebpackPlugin({
     template : project.paths.client('index.html'),
@@ -77,7 +77,7 @@ webpackConfig.plugins = [
 // Ensure that the compiler exits on errors during testing so that
 // they do not get skipped and misreported.
 if (__TEST__ && !argv.watch) {
-  webpackConfig.plugins.push(function () {
+  config.plugins.push(function () {
     this.plugin('done', function (stats) {
       if (stats.compilation.errors.length) {
         // Pretend no assets were generated. This prevents the tests
@@ -92,13 +92,13 @@ if (__TEST__ && !argv.watch) {
 
 if (__DEV__) {
   debug('Enabling plugins for live development (HMR, NoErrors).')
-  webpackConfig.plugins.push(
+  config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin()
   )
 } else if (__PROD__) {
   debug('Enabling plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
-  webpackConfig.plugins.push(
+  config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       sourceMap : true,
       compress : {
@@ -113,7 +113,7 @@ if (__DEV__) {
 
 // Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
-  webpackConfig.plugins.push(
+  config.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
       names : ['vendor', 'manifest']
     })
@@ -124,7 +124,7 @@ if (!__TEST__) {
 // Rules
 // ------------------------------------
 // JavaScript / JSON
-webpackConfig.module.rules = [{
+config.module.rules = [{
   test    : /\.(js|jsx)$/,
   exclude : /node_modules/,
   loader  : 'babel-loader',
@@ -151,7 +151,7 @@ const CSS_LOADER_MODULES_CONFIG = {
 
 const CSS_PATTERN = /\.css$/
 
-webpackConfig.module.rules.push({
+config.module.rules.push({
   test    : CSS_PATTERN,
   exclude : /node_modules/,
   use : [
@@ -168,7 +168,7 @@ webpackConfig.module.rules.push({
   ]
 })
 
-webpackConfig.module.rules.push({
+config.module.rules.push({
   test    : CSS_PATTERN,
   include : /node_modules/,
   use : [
@@ -187,7 +187,7 @@ webpackConfig.module.rules.push({
 
 // Images
 // ------------------------------------
-webpackConfig.module.rules.push({
+config.module.rules.push({
   test    : /\.(png|jpg|gif)$/,
   loader  : 'url-loader',
   options : {
@@ -208,7 +208,7 @@ webpackConfig.module.rules.push({
   const extension = font[0]
   const mimetype = font[1]
 
-  webpackConfig.module.rules.push({
+  config.module.rules.push({
     test    : new RegExp(`\\.${extension}$`),
     loader  : 'url-loader',
     options : {
@@ -227,7 +227,7 @@ webpackConfig.module.rules.push({
 // http://stackoverflow.com/questions/34133808/webpack-ots-parsing-error-loading-fonts/34133809#34133809
 if (!__DEV__) {
   debug('Applying ExtractTextPlugin to CSS rules.')
-  webpackConfig.module.rules.filter((rule) =>
+  config.module.rules.filter((rule) =>
     rule.test.toString() === CSS_PATTERN.toString() &&
       rule.use.find((loader) => loader.loader === 'css-loader')
   ).forEach((rule) => {
@@ -240,7 +240,7 @@ if (!__DEV__) {
     })
   })
 
-  webpackConfig.plugins.push(
+  config.plugins.push(
     new ExtractTextPlugin({
       filename: '[name].[contenthash].css',
       allChunks : true
@@ -248,4 +248,4 @@ if (!__DEV__) {
   )
 }
 
-module.exports = webpackConfig
+module.exports = config

@@ -1,29 +1,20 @@
-const cssnano = require('cssnano')
-const atImport = require('postcss-import')
-const atEach = require('postcss-each')
-const atVariables = require('postcss-at-rules-variables')
-const atIf = require('postcss-conditionals')
-const atFor = require('postcss-for')
-const customProperties = require('postcss-custom-properties')
-const mixins = require('postcss-mixins')
-const nested = require('postcss-nested')
-
-module.exports = {
+module.exports = ({ file, options, env }) => ({
+  parser: file.extname === '.sss' ? 'sugarss' : false,
   plugins: [
-    atVariables({ /* atRules: ['media'] */ }),
-    atEach(),
-    atImport({
+    require('postcss-at-rules-variables')({ /* atRules: ['media'] */ }),
+    require('postcss-each')(),
+    require('postcss-import')({
       plugins: [
         require('postcss-at-rules-variables')({ /* options */ }),
         require('postcss-import')
       ]
     }),
-    atFor(),
-    atIf(),
-    customProperties(),
-    nested(),
-    mixins(),
-    cssnano({
+    require('postcss-for')(),
+    require('postcss-conditionals')(),
+    require('postcss-custom-properties')(),
+    require('postcss-nested')(),
+    require('postcss-mixins')(),
+    require('cssnano')({
       autoprefixer : {
         add      : true,
         remove   : true,
@@ -39,4 +30,4 @@ module.exports = {
       sourcemap     : true
     })
   ]
-}
+})
