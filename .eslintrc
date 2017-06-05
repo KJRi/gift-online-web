@@ -30,7 +30,8 @@
     "flowtype/use-flow-type"  : 1,
     "flowtype/valid-syntax"   : 1,
     "no-duplicate-imports"    : 0,
-    "import/no-duplicates"    : 1
+    "import/no-duplicates"    : 1,
+    "react/jsx-space-before-closing"  : 0
   },
   "settings": {
     "flowtype": {

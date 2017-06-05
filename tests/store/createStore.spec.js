@@ -11,7 +11,7 @@ describe('(Store) createStore', () => {
 
   it('should have an empty asyncReducers object', () => {
     expect(storeHelper.asyncReducers).to.be.an('object')
-    expect(storeHelper.asyncReducers).to.be.empty
+    expect(storeHelper.asyncReducers).to.be.empty()
   })
 
   describe('(Location)', () => {
