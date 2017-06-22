@@ -46,5 +46,6 @@ $ yarn start      # Compile and launch (same as `npm start`)
 
 ## Todos
 - [ ] react-redux-router
+- [ ] debug logging
 
 > 关于这个starter kit的更多信息，请查看[davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
