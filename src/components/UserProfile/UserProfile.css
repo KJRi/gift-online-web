@@ -1,0 +1,8 @@
+.main-cont{
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  p {
+    font-size: 14px;
+  }
+}

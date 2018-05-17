@@ -5,9 +5,9 @@
   padding-left: 24px;
   width: var(--side-bar-width);
   height: var(--header-height);
-  background-color: #FFFFFF;
   font-size: 1.6em;
   line-height: var(--header-height);
+  color: #000;
 }
 
 .logo img {
