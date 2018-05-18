@@ -26,7 +26,8 @@ const config = {
   // ----------------------------------
   server_host : ip.address(), // use string 'localhost' to prevent exposure on local network
   server_port : process.env.PORT || 3000,
-
+  database    : 'mongodb://localhost:27017/test',
+  secret      : 'giftonlineweb',
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
