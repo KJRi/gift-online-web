@@ -24,10 +24,10 @@ class PersonalList extends React.PureComponent<Props, State> {
           </div>
         </Link>
         <Link to='/editPost'><div className={styles['list-item']}>
-          <Icon type='edit' />发帖<Icon type='right' /></div></Link>
-        <div className={styles['list-item']}><Icon type='solution' />修改信息<Icon type='right' /></div>
-        <div className={styles['list-item']}><Icon type='smile-o' />我的关注<Icon type='right' /></div>
-        <div className={styles['list-item']}><Icon type='like' />我的点赞<Icon type='right' /></div>
+          <Icon type='edit' />修改信息<Icon type='right' /></div></Link>
+        <Link to='/myOrders'><div className={styles['list-item']}>
+          <Icon type='layout' />我的订单<Icon type='right' /></div></Link>
+        <div className={styles['list-item']}><Icon type='gift' />送礼提醒<Icon type='right' /></div>
         <div className={styles['list-item']}><Icon type='logout' />退出登录<Icon type='right' /></div>
       </div>
     )

@@ -8,11 +8,13 @@ import Login from './Login'
 import Register from './Register'
 import EditPost from './EditPost'
 import GoodsCar from './GoodsCar'
+import MyOrders from './MyOrders'
 
 // Force import during development to enable Hot-Module Replacement
 // not need ?
 
 export default {
+  myOrders: MyOrders,
   goodsCar: GoodsCar,
   register: Register,
   editPost: EditPost,
