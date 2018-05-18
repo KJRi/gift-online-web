@@ -8,15 +8,16 @@ class RegisterFormCom extends Component {
   constructor (props) {
     super(props)
   }
-
+// 注册
   handleRegister = (e) => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        // 注册请求
         fetch('/api/signup', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             password: values.password,
@@ -24,15 +25,19 @@ class RegisterFormCom extends Component {
           })
         }).then(res => res.json())
         .then(res => {
+          // 后台端口请求正确
           if (res.success) {
             message.destroy()
             message.success(res.message)
+            localStorage.setItem('username', values.username)
             window.location.href = '/'
           } else {
+            // 失败时报错
             message.destroy()
             message.info(res.message)
           }
         })
+        .catch(e => console.log('Oops, error', e))
       }
     })
   }

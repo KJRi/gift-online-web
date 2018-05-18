@@ -14,17 +14,27 @@ class LoginFormCom extends Component {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        fetch('/live/user/login', {
+        fetch('/api/user/accesstoken', {
           method: 'POST',
           headers:{
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            phoneNum: values.phoneNum,
+            username: values.username,
             password: values.password
           })
         }).then(res => res.json())
-          .then(data => console.log(data))
+          .then(res => {
+            if (res.success) {
+              message.destroy()
+              message.success(res.message)
+              localStorage.setItem('username', values.username)
+              window.location.href = '/'
+            } else {
+              message.destroy()
+              message.info(res.message)
+            }
+          })
           .catch(e => console.log('Oops, error', e))
       }
     })
@@ -34,14 +44,13 @@ class LoginFormCom extends Component {
     const { getFieldDecorator } = this.props.form
     return (
       <div className={styles.containel}>
-        <h2>掌上生活网</h2>
-        <h3>登录</h3>
+        <h2>登录</h2>
         <Form onSubmit={this.handleLogin} className={styles.formStyle}>
           <FormItem>
-            {getFieldDecorator('phoneNum', {
-              rules: [{ required: true, message: '请输入手机号!' }]
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: '请输入用户名!' }]
             })(
-              <Input prefix={<Icon type='phone' style={{ fontSize: 13 }} />} placeholder='phoneNum' />
+              <Input prefix={<Icon type='phone' style={{ fontSize: 13 }} />} placeholder='username' />
                       )}
           </FormItem>
           <FormItem>
