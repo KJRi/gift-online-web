@@ -70,7 +70,7 @@ router.post('/user/accesstoken', (req, res) => {
 router.get('/users/info',
   passport.authenticate('bearer', { session: false }),
   function (req, res) {
-    res.json({ userusername: req.user.username })
+    res.json({ username: req.user.username })
   })
 
 module.exports = router

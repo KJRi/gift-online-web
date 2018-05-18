@@ -13,13 +13,12 @@ class RegisterFormCom extends Component {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        fetch('/live/user/register', {
+        fetch('/api/signup', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
           },
           body: {
-            phoneNum: values.phoneNum,
             password: values.password,
             username: values.username
           }
@@ -37,13 +36,6 @@ class RegisterFormCom extends Component {
       <div className={styles.containel}>
         <h2>注册</h2>
         <Form onSubmit={this.handleRegister} className={styles.formStyle}>
-          <FormItem>
-            {getFieldDecorator('phoneNum', {
-              rules: [{ required: true, message: '请输入手机号!' }]
-            })(
-              <Input prefix={<Icon type='phone' style={{ fontSize: 13 }} />} placeholder='phoneNum' />
-                      )}
-          </FormItem>
           <FormItem>
             {getFieldDecorator('username', {
               rules: [{ required: true, message: '请输入用户名!' }]
