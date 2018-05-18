@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import { Input, Form, Icon, Button } from 'antd'
+import { Input, Form, Icon, Button, message } from 'antd'
 import styles from './Register.css'
 const FormItem = Form.Item
 
@@ -18,13 +18,20 @@ class RegisterFormCom extends Component {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-          body: {
+          body: JSON.stringify({
             password: values.password,
             username: values.username
-          }
+          })
         }).then(res => res.json())
         .then(res => {
-          console.log('success')
+          if (res.success) {
+            message.destroy()
+            message.success(res.message)
+            window.location.href = '/'
+          } else {
+            message.destroy()
+            message.info(res.message)
+          }
         })
       }
     })
