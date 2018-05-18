@@ -2,17 +2,30 @@ const express = require('express')
 const debug = require('debug')('app:server')
 const path = require('path')
 const webpack = require('webpack')
+const morgan = require('morgan') // 命令行log显示
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const passport = require('passport')// 用户认证模块passport
+const Strategy = require('passport-http-bearer').Strategy// token验证模块
 const webpackConfig = require('../config/webpack.config')
 const project = require('../config/project.config')
 const compress = require('compression')
+const routes = require(../'routes')
 
 const app = express()
 
 // Apply gzip compression
 app.use(compress())
-
+app.use(passport.initialize())// 初始化passport模块
+app.use(morgan('dev'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 // ------------------------------------
 // Apply Webpack HMR Middleware
+routes(app)
+// 链接数据库
+mongoose.Promise = global.Promise
+mongoose.connect(project.database)
 // ------------------------------------
 if (project.env === 'development') {
   const compiler = webpack(webpackConfig)
