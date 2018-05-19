@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import styles from './PersonalList.css'
-import { Avatar, Icon } from 'antd'
+import { Avatar, Icon, message } from 'antd'
 import { Link } from 'react-router-dom'
 
 type Props = {}
@@ -16,8 +16,10 @@ class PersonalList extends React.PureComponent<Props, State> {
   }
   logout () {
     localStorage.clear()
+    message.success('已退出登录')
     window.location.href = '/login'
   }
+
   render () {
     const usernname = localStorage.getItem('username')
     return (
