@@ -2,7 +2,6 @@
 import React from 'react'
 import './Circle.css'
 import UserProfile from 'components/UserProfile'
-import PostPage from 'components/PostPage'
 import { message } from 'antd'
 import { withRouter } from 'react-router'
 
@@ -50,7 +49,6 @@ class Circle extends React.PureComponent<Props, State> {
     return (
       <div>
         <UserProfile {...{ userinfo }} />
-        <PostPage {...{ postlist }} />
       </div>
     )
   }

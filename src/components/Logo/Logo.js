@@ -32,7 +32,7 @@ class Logo extends React.Component<Props, State> {
     let key
     switch (pathname) {
       case '/':
-        key = '掌上生活网'
+        key = '礼物帮手'
         break
       case '/detail':
         key = '详情页'
@@ -44,7 +44,7 @@ class Logo extends React.Component<Props, State> {
         key = '个人中心'
         break
       default:
-        key = '掌上生活网'
+        key = '礼物帮手'
     }
     this.setState({ current: key })
   }

@@ -2,7 +2,6 @@
 import React from 'react'
 import './Detail.css'
 import { Input } from 'antd'
-import PostPage from 'components/PostPage'
 const Search = Input.Search
 
 type Props = {}
@@ -51,7 +50,6 @@ class Detail extends React.PureComponent<Props, State> {
           onSearch={this.searchPst}
           size='large'
         />
-        <PostPage {...{ postlist }} />
       </div>
     )
   }

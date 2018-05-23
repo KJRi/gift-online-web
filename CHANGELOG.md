@@ -106,7 +106,7 @@ Changelog
 * Added `better-npm-run`
 * Added loader for `.otf` files
 * Added `nodemon` for local server development
-* Added placeholder favicon, `humans.txt`, and `robots.txt`
+* Added placeholder gift, `humans.txt`, and `robots.txt`
 * Replaced `express` with `koa@^2.0.0-alpha`
 * Added `koa-proxy` with config support
 * Added `koa-conntect-history-api-fallback`
