@@ -7,7 +7,7 @@
   height: var(--header-height);
   font-size: 1.6em;
   line-height: var(--header-height);
-  color: #fff;
+  color: #000;
 }
 
 .logo img {

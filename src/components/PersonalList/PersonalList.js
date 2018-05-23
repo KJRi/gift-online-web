@@ -1,45 +1,74 @@
 // @flow
 import React from 'react'
 import styles from './PersonalList.css'
-import { Avatar, Icon, message } from 'antd'
+import { Avatar, Icon } from 'antd'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
-type Props = {}
-type State = {}
+type Props = {
+  history: Object
+}
+type State = {
+  userinfo: Object
+}
 
 class PersonalList extends React.PureComponent<Props, State> {
   logout: Function
   constructor (props: Props) {
     super(props)
     this.state = {
+      userinfo: {}
     }
+  }
+  componentWillMount () {
+    const username = localStorage.getItem('username')
+    if (!username) {
+      window.location.href = '/login'
+    }
+    fetch(`/info/get?username=${username}`, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(res => this.setState({
+      userinfo: res
+    }))
   }
   logout () {
     localStorage.clear()
-    message.success('已退出登录')
     window.location.href = '/login'
   }
-
   render () {
-    const usernname = localStorage.getItem('username')
+    const username = localStorage.getItem('username')
+    const mine = `/circle/${username}`
+    const { userinfo } = this.state
     return (
       <div>
-        <Link to='/circle'>
+        <Link to={mine}>
           <div className={styles['list-item']}>
-            <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
-            <h3>{usernname}</h3>
-            <p>description</p>
+            {
+              userinfo.headerImg
+              ? <Avatar src={userinfo.headerImg} />
+              : <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
+            }
+            <h3>{username}</h3>
+            {
+              userinfo.description
+              ? <p>{userinfo.description}</p>
+              : ''
+            }
           </div>
         </Link>
         <Link to='/editPost'><div className={styles['list-item']}>
-          <Icon type='edit' />修改信息<Icon type='right' /></div></Link>
-        <Link to='/myOrders'><div className={styles['list-item']}>
-          <Icon type='layout' />我的订单<Icon type='right' /></div></Link>
-        <div className={styles['list-item']}><Icon type='gift' />送礼提醒<Icon type='right' /></div>
+          <Icon type='edit' />发帖<Icon type='right' /></div></Link>
+        <Link to='/editUserInfo'><div className={styles['list-item']}>
+          <Icon type='solution' />修改信息<Icon type='right' /></div></Link>
+        <Link to='/myFollow'><div className={styles['list-item']}>
+          <Icon type='smile-o' />我的关注<Icon type='right' /></div></Link>
+        <Link to='/myLike'><div className={styles['list-item']}>
+          <Icon type='like' />我的点赞<Icon type='right' /></div></Link>
         <div className={styles['list-item']} onClick={this.logout}><Icon type='logout' />退出登录<Icon type='right' /></div>
       </div>
     )
   }
 }
 
-export default PersonalList
+export default withRouter(PersonalList)

@@ -2,6 +2,7 @@
 const express = require('express')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
+const UserInfo = require('../models/userinfo')
 const project = require('../config/project.config')
 const passport = require('passport')
 const router = express.Router()
@@ -67,10 +68,10 @@ router.post('/user/accesstoken', (req, res) => {
 // passport-http-bearer token 中间件验证
 // 通过 header 发送 Authorization -> Bearer  + token
 // 或者通过 ?access_token = token
-// router.get('/users/info',
-//   passport.authenticate('bearer', { session: false }),
-//   function (req, res) {
-//     res.json({ username: req.user.username })
-//   })
+router.get('/users/info',
+  passport.authenticate('bearer', { session: false }),
+  function (req, res) {
+    res.json({ username: req.user.username })
+  })
 
 module.exports = router

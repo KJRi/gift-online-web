@@ -18,8 +18,8 @@ const app = express()
 app.use(compress())
 app.use(passport.initialize())// 初始化passport模块
 app.use(morgan('dev'))
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+app.use(bodyParser.json({ limit: '50mb' }))
 // ------------------------------------
 // Apply Webpack HMR Middleware
 routes(app)

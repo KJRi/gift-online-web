@@ -2,8 +2,11 @@
 import React from 'react'
 import styles from './IndexList.css'
 import { Card, Row, Col, Icon } from 'antd'
+import { withRouter } from 'react-router'
 
-type Props = {}
+type Props = {
+  history: Object
+}
 type State = {
 }
 
@@ -15,28 +18,33 @@ class IndexList extends React.PureComponent<Props, State> {
     }
     this.enterList = this.enterList.bind(this)
   }
-  enterList (item: Object) {
-    console.log(item)
+  enterList (tag: String) {
+    this.props.history.push(`/tagPost/${tag}`)
   }
   render () {
     const listData = [
       {
+        key: 0,
         title: '本地资讯',
         description: '查看当地最及时的第一手咨询'
       },
       {
+        key: 1,
         title: '邻里讨论',
         description: '不如进来看看大家都在讨论些什么吧'
       },
       {
+        key: 2,
         title: '二手市场',
         description: '可以来这里卖掉您的闲置物品或者来淘一淘精美二手闲置吧'
       },
       {
+        key: 3,
         title: '同城交友',
         description: '来寻找与你志同道合的朋友吧'
       },
       {
+        key: 4,
         title: '房屋租赁',
         description: '找房租房-发布租房信息'
       }
@@ -80,4 +88,4 @@ class IndexList extends React.PureComponent<Props, State> {
   }
 }
 
-export default IndexList
+export default withRouter(IndexList)

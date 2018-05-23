@@ -32,22 +32,19 @@ class Logo extends React.Component<Props, State> {
     let key
     switch (pathname) {
       case '/':
-        key = '礼物帮手网'
+        key = '掌上生活网'
         break
       case '/detail':
-        key = '分类'
+        key = '详情页'
         break
       case '/circle':
-        key = '积分商城'
+        key = '朋友圈'
         break
       case '/personal':
-        key = '我的'
-        break
-      case '/goodsCar':
-        key = '购物车'
+        key = '个人中心'
         break
       default:
-        key = '礼物帮手网'
+        key = '掌上生活网'
     }
     this.setState({ current: key })
   }
