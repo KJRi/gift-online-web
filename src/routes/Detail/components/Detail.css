@@ -1,3 +1,14 @@
 :global .ant-input {
   height: 50px;
 }
+.containal{
+  /* float: right; */
+  background-color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  :global .anticon{
+    color:#FF7E00;
+    font-size: 20px;
+    margin:0 20px auto;
+  }
+}

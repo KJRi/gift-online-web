@@ -1,12 +1,16 @@
 // @flow
 import React from 'react'
-import './Detail.css'
-import { Input } from 'antd'
+import styles from './Detail.css'
+import { Input, Icon, Layout, Menu } from 'antd'
+import GoodsList from 'components/GoodsList'
 const Search = Input.Search
+const { Sider } = Layout
+const { SubMenu, Content } = Menu
 
 type Props = {}
 type State = {
-  postlist: Array<Object>
+  goodsList: Array<Object>,
+  priceState: Boolean,
 }
 
 class Detail extends React.PureComponent<Props, State> {
@@ -14,43 +18,136 @@ class Detail extends React.PureComponent<Props, State> {
   constructor (props: Props) {
     super(props)
     this.state = {
-      postlist: []
+      goodsList: [],
+      priceState: true
     }
     this.searchPst = this.searchPst.bind(this)
   }
   searchPst (value) {
     const evalue = value.trim()
-    fetch(`/post/get?title=${evalue}`, {
-      method: 'GET'
-    })
+    const { priceState } = this.state
+    if (priceState) {
+      fetch(`/good/get?title=${evalue}`, {
+        method: 'GET'
+      })
     .then(res => res.json())
     .then(res => {
       this.setState({
-        postlist: res
+        goodsList: res
       })
     })
+    } else {
+      fetch(`/good/getdown?title=${evalue}`, {
+        method: 'GET'
+      })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          goodsList: res
+        })
+      })
+    }
   }
-  componentWillMount () {
-    fetch('/post/all', {
-      method: 'GET'
-    })
+  handleClick = (e: Object) => {
+    const tag = e.key
+    const { priceState } = this.state
+    if (priceState) {
+      fetch(`/good/get?tag=${tag}`, {
+        method: 'GET'
+      })
     .then(res => res.json())
     .then(res => {
       this.setState({
-        postlist: res
+        goodsList: res
       })
     })
+    } else {
+      fetch(`/good/getdown?tag=${tag}`, {
+        method: 'GET'
+      })
+  .then(res => res.json())
+  .then(res => {
+    this.setState({
+      goodsList: res
+    })
+  })
+    }
+  }
+  componentDidMount () {
+    const { priceState } = this.state
+    if (priceState) {
+      fetch('/good/get', {
+        method: 'GET'
+      })
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        goodsList: res
+      })
+    })
+    } else {
+      fetch('/good/get', {
+        method: 'GET'
+      })
+  .then(res => res.json())
+  .then(res => {
+    this.setState({
+      goodsList: res
+    })
+  })
+    }
+  }
+  changeSort = () => {
+    const { priceState } = this.state
+    if (priceState) {
+      this.setState({
+        priceState: false
+      })
+    } else {
+      this.setState({
+        priceState: true
+      })
+    }
   }
   render () {
-    const postlist = this.state.postlist
+    const { goodsList, priceState } = this.state
     return (
-      <div>
-        <Search
-          placeholder='请输入您想搜索的帖子'
-          onSearch={this.searchPst}
-          size='large'
+      <Layout>
+        <Sider width={100} style={{ background: '#fff' }}>
+          <Menu
+            mode='inline'
+            onClick={this.handleClick}
+            style={{ height: '100%', borderRight: 0 }}
+        >
+            <Menu.Item key='送爱人'>送爱人</Menu.Item>
+            <Menu.Item key='送长辈'>送长辈</Menu.Item>
+            <Menu.Item key='送兄弟'>送兄弟</Menu.Item>
+            <Menu.Item key='送闺蜜'>送闺蜜</Menu.Item>
+            <Menu.Item key='送领导'>送领导</Menu.Item>
+            <Menu.Item key='送小孩'>送小孩</Menu.Item>
+          </Menu>
+        </Sider>
+        <div>
+          <Search
+            placeholder='请输入您想搜索的礼物'
+            onSearch={this.searchPst}
+            size='large'
         />
-      </div>
+          <div className={styles['containal']}>
+        价格排序<Icon type={
+          priceState
+          ? 'caret-up'
+          : 'up'
+        } onClick={this.changeSort} />
+      |<Icon type={
+        priceState
+        ? 'down'
+        : 'caret-down'
+      } onClick={this.changeSort} />
+          </div>
+          <GoodsList {...{ goodsList }} />
+        </div>
+      </Layout>
     )
   }
 }
