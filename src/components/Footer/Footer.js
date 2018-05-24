@@ -81,7 +81,7 @@ class Footer extends React.Component<Props, State> {
           className={styles['footer-menu']}
         >
           <Menu.Item key='home'><Link to='/'><Icon type='home' />首页</Link></Menu.Item>
-          <Menu.Item key='detail'><Link to='/detail'><Icon type='message' />详情页</Link></Menu.Item>
+          <Menu.Item key='detail'><Link to='/detail'><Icon type='message' />分类</Link></Menu.Item>
           <Menu.Item key='circle'><Link to={circle}><Icon type='global' />朋友圈</Link></Menu.Item>
           <Menu.Item key='personal'><Link to='/personal'><Icon type='user' />个人中心</Link></Menu.Item>
         </Menu>

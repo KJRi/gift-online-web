@@ -34,6 +34,14 @@ router.get('/get', (req, res) => {
     res.json({ success: false, message: '未登录' })
   }
 })
+// 根据用户查找是否收藏
+router.get('/getIs', (req, res) => {
+  if (req.query.username) {
+    Favs.find({ 'username': req.query.username, 'goodId': req.query.goodId }).sort({ _id: -1 }).exec().then((favs) => {
+      return res.json(favs)
+    })
+  }
+})
 // 取消收藏
 router.post('/delete', (req, res) => {
   if (!req.body.username) {

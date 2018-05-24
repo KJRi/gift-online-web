@@ -1,0 +1,13 @@
+.containal{
+  :global
+  .ant-carousel .slick-slide {
+    text-align: center;
+    height: 600px;
+    background: #364d79;
+    overflow: hidden;
+  }
+  img{
+    margin: 0 auto;
+    height: 600px;
+  }
+}
