@@ -43,6 +43,9 @@ class Logo extends React.Component<Props, State> {
       case '/personal':
         key = '个人中心'
         break
+      case '/myfav':
+        key = '我的收藏'
+        break
       default:
         key = '礼物帮手'
     }

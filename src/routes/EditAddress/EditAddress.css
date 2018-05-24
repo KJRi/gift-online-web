@@ -1,0 +1,13 @@
+.containel{
+    background-color: #fff;
+
+:global {
+  .ant-table-content{
+  background-color: #fff;
+  text-align: center;
+}
+.ant-btn-primary{
+  margin: 20px 20px;
+}
+}
+}

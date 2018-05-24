@@ -12,7 +12,7 @@ router.post('/create', (req, res) => {
       name: req.body.name,
       location: req.body.location,
       detail: req.body.detail,
-      phoneNum: req.String
+      phoneNum: req.body.phoneNum
     }
     Addresses.update({ 'username': req.body.username },
     { $push: { 'address': newAddress } }, { upsert: true }, (err) => {
