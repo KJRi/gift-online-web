@@ -41,8 +41,7 @@ router.post('/delete', (req, res) => {
     res.json({ success: false, message: '未登录' })
   } else {
     var newCar = {
-      time: req.body.time,
-      username: req.body.username
+      _id: req.body.carId
     }
     // 删除
     Cars.remove(newCar, (err) => {

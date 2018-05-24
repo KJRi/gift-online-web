@@ -66,7 +66,6 @@ class EditAddress extends React.PureComponent<Props, State> {
     })
   }
   deleteAddress = (id: String) => {
-    console.log(id)
     fetch('/address/delete', {
       method: 'POST',
       headers: {

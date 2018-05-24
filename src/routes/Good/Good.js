@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Good.css'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Carousel, Card, Icon, message } from 'antd'
+import { Carousel, Card, Icon, message, InputNumber } from 'antd'
 const { Meta } = Card
 
 type Props = {
@@ -12,7 +12,8 @@ type Props = {
 type State = {
   good: Object,
   url: Array,
-  favState: Boolean
+  favState: Boolean,
+  count: Number
 }
 
 class Good extends React.PureComponent<Props, State> {
@@ -21,7 +22,8 @@ class Good extends React.PureComponent<Props, State> {
     this.state = {
       good: {},
       url: [],
-      favState: false
+      favState: false,
+      count: 1
     }
   }
   componentDidMount () {
@@ -102,9 +104,37 @@ class Good extends React.PureComponent<Props, State> {
       })
     }
   }
+  carIt = () => {
+    const { count } = this.state
+    // 添加购物车
+    fetch('/car/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        goodId: this.props.match.params.id,
+        title: this.state.good.title,
+        price: this.state.good.price,
+        imageUrl: this.state.url[0],
+        count: count
+      })
+    }).then(res => res.json())
+      .then(res => {
+        // 后端正确
+        if (res.success) {
+          message.destroy()
+          message.success(res.message)
+        } else {
+          message.destroy()
+          message.info(res.message)
+        }
+      })
+      .catch(e => console.log('Oops, error', e))
+  }
   render () {
     const { good, url, favState } = this.state
-    console.log(favState)
     return (
       <div className={styles['containal']}>
         <Carousel autoPlay>
@@ -122,11 +152,20 @@ class Good extends React.PureComponent<Props, State> {
           </div>
         </Carousel>
         <Card
-          actions={[<Icon type={
+          actions={[<p onClick={this.likeIt}><Icon type={
             favState
             ? 'heart'
             : 'heart-o'
-          } style={{ color: 'red' }} onClick={this.likeIt} />, <Icon type='edit' />, <Icon type='ellipsis' />]}
+          } style={{ color: 'red' }} />{
+            favState
+            ? '取消收藏'
+            : '收藏'
+          }
+          </p>,
+            <div>
+              <InputNumber min={1} defaultValue={1} onChange={(value) => this.setState({ count: value })} />
+              <p onClick={this.carIt}><Icon type='shopping-cart' />添加购物车</p>
+            </div>]}
   >
           <Meta
             style={{ fontSize: 20 }}

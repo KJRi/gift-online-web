@@ -55,8 +55,8 @@ class Footer extends React.Component<Props, State> {
       case '/detail':
         key = 'detail'
         break
-      case `/circle/${username}`:
-        key = 'circle'
+      case '/goodsCar':
+        key = 'goodsCar'
         break
       case '/personal':
         key = 'personal'
@@ -69,7 +69,6 @@ class Footer extends React.Component<Props, State> {
 
   render () {
     const username = localStorage.getItem('username')
-    const circle = `/circle/${username}`
     return (
       <footer className={styles['footer']}>
         <Menu
@@ -82,7 +81,7 @@ class Footer extends React.Component<Props, State> {
         >
           <Menu.Item key='home'><Link to='/'><Icon type='home' />首页</Link></Menu.Item>
           <Menu.Item key='detail'><Link to='/detail'><Icon type='message' />分类</Link></Menu.Item>
-          <Menu.Item key='circle'><Link to={circle}><Icon type='global' />朋友圈</Link></Menu.Item>
+          <Menu.Item key='goodsCar'><Link to='/goodsCar'><Icon type='shopping-cart' />购物车</Link></Menu.Item>
           <Menu.Item key='personal'><Link to='/personal'><Icon type='user' />个人中心</Link></Menu.Item>
         </Menu>
       </footer>

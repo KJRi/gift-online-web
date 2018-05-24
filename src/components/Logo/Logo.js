@@ -37,14 +37,17 @@ class Logo extends React.Component<Props, State> {
       case '/detail':
         key = '详情页'
         break
-      case '/circle':
-        key = '朋友圈'
+      case '/goodsCar':
+        key = '购物车'
         break
       case '/personal':
         key = '个人中心'
         break
       case '/myfav':
         key = '我的收藏'
+        break
+      case '/myOrders':
+        key = '我的订单'
         break
       default:
         key = '礼物帮手'

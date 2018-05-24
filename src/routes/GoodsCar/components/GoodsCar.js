@@ -1,123 +1,210 @@
 // @flow
 import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Row, Col, Modal } from 'antd'
-import QueueAnim from 'rc-queue-anim'
+import { Table, Button, message, Select } from 'antd'
 import styles from './GoodsCar.css'
-// import PostPage from 'components/PostPage'
+const Option = Select.Option
 
+const columns = [{
+  title: '图片',
+  dataIndex: 'imageUrl',
+  key: 'imageUrl'
+},
+{
+  title: '名称',
+  dataIndex: 'name',
+  key: 'name'
+},
+{
+  title: '数量',
+  dataIndex: 'count',
+  key: 'count'
+},
+{
+  title: '总价',
+  dataIndex: 'price',
+  key: 'price'
+},
+{
+  title: '删除',
+  dataIndex: 'operator',
+  key: 'operator'
+}]
 type Props = {}
 type State = {
-  visible: boolean
+  visible: boolean,
+  carsList: Array<Object>,
+  selected: Object,
+  price: Number,
+  addressList: Array<Object>,
+  address: Object
 }
 
 class GoodsCar extends React.PureComponent<Props, State> {
-  state = { visible: false }
-  showModal = () => {
-    this.setState({
-      visible: true
-    })
+  state = {
+    visible: false,
+    carsList: [],
+    selected: {},
+    price: 0,
+    addressList: [],
+    address: {}
   }
-  handleCancel = () => {
-    this.setState({
-      visible: false
-    })
+  deleteCar = (id: String) => {
+    console.log(id)
+    fetch('/car/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        carId: id
+      })
+    }).then(res => res.json())
+  .then(res => {
+    // 后端正确
+    if (res.success) {
+      message.destroy()
+      message.success(res.message)
+      location.reload()
+    } else {
+      message.destroy()
+      message.info(res.message)
+    }
+  })
+  .catch(e => console.log('Oops, error', e))
   }
-  clearproduct = () => {
-    console.log('清空')
+  componentDidMount () {
+    const username = localStorage.getItem('username')
+    fetch(`/car/get?username=${username}`, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(res => this.setState({
+      carsList: res.map((item, index) => {
+        return {
+          key: item._id,
+          name: item.title,
+          goodId: item.goodId,
+          imageUrl: <img src={item.imageUrl} />,
+          image: item.imageUrl,
+          count: item.count,
+          price: item.price.toFixed(2),
+          operator: <Button onClick={() => this.deleteCar(item._id)}>删除</Button>
+        }
+      })
+    }))
+    fetch(`/address/get?username=${username}`, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(res => this.setState({
+      addressList: res[0].address
+    }))
   }
-  handleOk = () => {
-    console.log('结算')
-    this.setState({
-      visible: false
+  account = () => {
+    const { selected, address } = this.state
+    console.log(selected)
+    console.log(address)
+    if (!selected.name) {
+      message.destroy()
+      message.info('请选择商品')
+      return
+    }
+    if (!address.name) {
+      message.destroy()
+      message.info('请选择地址')
+      return
+    }
+    fetch('/order/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        title: selected.name,
+        imageUrl: selected.image,
+        price: selected.price,
+        count: selected.count,
+        goodId: selected.goodId,
+        name: address.name,
+        phoneNum: address.phoneNum,
+        detail: address.detail,
+        location: address.location
+      })
+    }).then(res => res.json())
+    .then(res => {
+      // 后端正确
+      if (res.success) {
+        message.destroy()
+        message.success(res.message)
+      } else {
+        message.destroy()
+        message.info(res.message)
+      }
     })
+    .catch(e => console.log('Oops, error', e))
+    fetch('/car/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        carId: selected.key
+      })
+    })
+    location.href = './myOrders'
+  }
+  resetCar = () => {
+    fetch('/car/deleteAll', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username')
+      })
+    }).then(res => res.json())
+  .then(res => {
+    // 后端正确
+    if (res.success) {
+      message.destroy()
+      message.success(res.message)
+      location.reload()
+    } else {
+      message.destroy()
+      message.info(res.message)
+    }
+  })
+  .catch(e => console.log('Oops, error', e))
   }
   render () {
-    const product = [
-      {
-        id: 1,
-        price: 500,
-        num: 5,
-        name: 'absdfksabdfkjdsf'
-      },
-      {
-        id: 2,
-        price: 200,
-        num: 5,
-        name: 'abfkjdsf'
-      }
-    ]
+    const { carsList, price, addressList } = this.state
+    const option = addressList && addressList.map((item, index) => {
+      return (
+        <Option value={item} key={item._id}>{item.name}/{item.phoneNum}/{item.location[0]}
+          {item.location[1]}{item.location[2]}/{item.detail}</Option>
+      )
+    })
     return (
-      <div className={styles['cart-list']}>
-        <div className={styles['cart-list-title']}>
-          <Row>
-            <Col span={8}>
-              商品信息
-            </Col>
-            <Col span={4} />
-            <Col span={4}>
-              单价
-            </Col>
-            <Col span={4}>
-              数量
-            </Col>
-            <Col span={4}>
-              金额
-            </Col>
-          </Row>
-        </div>
-        <QueueAnim type={['right', 'left']}>
-          {
-           product && product.map((list, index) => {
-             return (
-               <div>
-                 <div className={styles['cart-list-li']} key={index}>
-                   <Row>
-                     <Col span={3}>
-                       <div className={styles['img']}>
-                         <img src='http://www.huayifeng.top:8000/images/5.jpg' alt='' />
-                       </div>
-                     </Col>
-                     <Col span={9}>
-                       <div className={styles['text']}><Link to={'/detail/' + list.id}>{list.name}</Link></div>
-                     </Col>
-                     <Col span={4}>
-                       <div className={styles['text']}>￥{list.price}</div>
-                     </Col>
-                     <Col span={4}>
-                       <div className={styles['text']}>{list.num}</div>
-                     </Col>
-                     <Col span={4}>
-                       <div className={styles['text']}>￥{list.num * list.price}</div>
-                     </Col>
-                   </Row>
-                 </div>
-               </div>
-             )
-           })
-         }
-        </QueueAnim>
-        <div className={styles['total']}>
-          <div onClick={this.clearproduct} className={styles['total-clear']}>
-            清空
-          </div>
-          <div className={styles['total-all']} onClick={this.showModal}>
-            去结算
-          </div>
-          <div className={styles['total-font']}>
-            <span className={styles['total-symbol']}>&nbsp;￥</span>
-            {product.reduce((sum, list) => {
-              return sum + list.num * list.price
-            }, 0)}
+      <div className={styles['car-box']}>
+        <Table columns={columns} dataSource={carsList}
+          rowSelection={{
+            type: 'radio',
+            onSelect: (value) => this.setState({ selected: value, price: value.count * value.price })
+          }}
+          pagination={{
+            hideOnSinglePage: true
+          }} />
+        <Select style={{ width: 400 }} size='large' onChange={(value) => this.setState({ address: value })}>
+          {option}
+        </Select>
+        <div className={styles['operator-list']}>
+          <Button size='large' onClick={this.resetCar}>清空购物车</Button>
+          <div className={styles['account-list']}>
+          总价：￥{price.toFixed(2)}
+            <Button size='large' type='primary' onClick={this.account}>结算</Button>
           </div>
         </div>
-        <Modal title='提示框' visible={this.state.visible}
-          onOk={this.handleOk} onCancel={this.handleCancel}
-        >
-          <h5>确认购买？</h5>
-          <p>（购买后请到我的订单查看）</p>
-        </Modal>
       </div>
     )
   }

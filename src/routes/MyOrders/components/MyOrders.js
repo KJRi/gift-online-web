@@ -1,65 +1,61 @@
 // @flow
 import React from 'react'
 import styles from './MyOrders.css'
-import { Row, Col } from 'antd'
+import { List, Avatar, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 // import PostPage from 'components/PostPage'
 
 type Props = {}
-type State = {}
+type State = {
+  orderList: Array<Object>
+}
 
 class MyOrders extends React.PureComponent<Props, State> {
+  state = {
+    orderList: []
+  }
+  componentDidMount () {
+    const username = localStorage.getItem('username')
+    fetch(`/order/get?username=${username}`, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(res => this.setState({
+      orderList: res
+    }))
+  }
   render () {
-    const getLocalTime = (nS) => {
-      return new Date(parseInt(nS)).toLocaleString().replace(/:\d{1,2}$/, ' ')
-    }
-    const product = [
-      {
-        id: 1,
-        price: 500,
-        num: 5,
-        name: 'absdfksabdfkjdsf'
-      },
-      {
-        id: 2,
-        price: 200,
-        num: 5,
-        name: 'abfkjdsf'
-      }
-    ]
+    const { orderList } = this.state
+    console.log(orderList)
+    orderList && orderList.map(item => {
+      item.href = `/good/${item.goodId}`
+    })
     return (
-      <div>
-        {
-         product && product.map((list, index) => {
-           return (
-             <div>
-               <p>{getLocalTime(index)}</p>
-               <div className={styles['cart-list-li']} key={index}>
-                 <Row>
-                   <Col span={3}>
-                     <div className={styles['img']}>
-                       <img src='http://www.huayifeng.top:8000/images/5.jpg' alt='' />
-                     </div>
-                   </Col>
-                   <Col span={9}>
-                     <div className={styles['text']}><Link to={'/detail/' + list.id}>{list.name}</Link></div>
-                   </Col>
-                   <Col span={4}>
-                     <div className={styles['text']}>￥{list.price}</div>
-                   </Col>
-                   <Col span={4}>
-                     <div className={styles['text']}>{list.num}</div>
-                   </Col>
-                   <Col span={4}>
-                     <div className={styles['text']}>￥{list.num * list.price}</div>
-                   </Col>
-                 </Row>
-               </div>
-             </div>
-           )
-         })
-       }
-      </div>
+      <List
+        itemLayout='horizontal'
+        dataSource={orderList}
+        renderItem={item => (
+          <Link to={item.href}>
+            <List.Item key={item.title}>
+              <List.Item.Meta
+                avatar={<Avatar shape='square' size='large' src={item.imageUrl} />}
+                title={item.title}
+                description={<p style={{ color: 'red ' }}>
+                  <Icon type='pay-circle-o' style={{ marginRight: 5 }} />
+                  {item.price.toFixed(2)}*{item.count}={item.price * item.count}</p>}
+        />
+              <div>
+                <p>收货人：{item.address.name}</p>
+                <p>收货地址：{item.address.location[0]}
+                  {item.address.location[1]}
+                  {item.address.location[2]}
+                  {item.address.detail}</p>
+                <p>收货电话：{item.address.phoneNum}</p>
+                <p>订单时间：{item.time}</p>
+              </div>
+            </List.Item>
+          </Link>
+    )}
+  />
     )
   }
 }
