@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Good.css'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Carousel, Card, Icon, message, InputNumber } from 'antd'
+import { Carousel, Card, List, Icon, Rate, message, InputNumber } from 'antd'
 const { Meta } = Card
 
 type Props = {
@@ -13,7 +13,8 @@ type State = {
   good: Object,
   url: Array,
   favState: Boolean,
-  count: Number
+  count: Number,
+  judgeList: Array<Object>
 }
 
 class Good extends React.PureComponent<Props, State> {
@@ -23,7 +24,8 @@ class Good extends React.PureComponent<Props, State> {
       good: {},
       url: [],
       favState: false,
-      count: 1
+      count: 1,
+      judgeList: []
     }
   }
   componentDidMount () {
@@ -44,6 +46,13 @@ class Good extends React.PureComponent<Props, State> {
         this.setState({ favState: true })
       }
     })
+    fetch(`/judge/get?goodId=${id}`, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(res => this.setState({
+      judgeList: res
+    })
+    )
   }
   likeIt = () => {
     const { favState } = this.state
@@ -134,7 +143,8 @@ class Good extends React.PureComponent<Props, State> {
       .catch(e => console.log('Oops, error', e))
   }
   render () {
-    const { good, url, favState } = this.state
+    const { good, url, favState, judgeList } = this.state
+    console.log(judgeList)
     return (
       <div className={styles['containal']}>
         <Carousel autoPlay>
@@ -179,6 +189,19 @@ class Good extends React.PureComponent<Props, State> {
               }</p>}
     />
         </Card>
+        <List
+          itemLayout='horizontal'
+          dataSource={judgeList}
+          renderItem={item => (
+            <List.Item key={item._id}>
+              <List.Item.Meta
+                avatar={item.username}
+                title={<Rate disabled defaultValue={item.rate} />}
+                description={<p>{item.content}</p>}
+          />
+            </List.Item>
+      )}
+    />
       </div>
     )
   }

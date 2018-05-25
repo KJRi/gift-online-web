@@ -8,4 +8,5 @@ module.exports = (app) => {
   app.use('/fav', require('./favs'))
   app.use('/birth', require('./births'))
   app.use('/address', require('./addresses'))
+  app.use('/judge', require('./judges'))
 }

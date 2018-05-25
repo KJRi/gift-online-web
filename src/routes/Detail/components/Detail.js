@@ -5,7 +5,6 @@ import { Input, Icon, Layout, Menu } from 'antd'
 import GoodsList from 'components/GoodsList'
 const Search = Input.Search
 const { Sider } = Layout
-const { SubMenu, Content } = Menu
 
 type Props = {}
 type State = {

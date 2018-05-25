@@ -13,3 +13,6 @@
   width: 900px;
   margin-left: 10px;
 }
+:global .ant-list-item-content{
+  flex: none;
+}
