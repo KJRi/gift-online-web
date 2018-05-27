@@ -49,6 +49,9 @@ class Logo extends React.Component<Props, State> {
       case '/myOrders':
         key = '我的订单'
         break
+      case '/PointShop':
+        key = '积分商城'
+        break
       default:
         key = '礼物帮手'
     }

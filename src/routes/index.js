@@ -12,11 +12,15 @@ import myFav from './myFav'
 import EditAddress from './EditAddress'
 import GoodsCar from './GoodsCar'
 import MyOrders from './MyOrders'
+import EditBirth from './EditBirth'
+import PointShop from './PointShop'
 
 // Force import during development to enable Hot-Module Replacement
 // not need ?
 
 export default {
+  editBirth: EditBirth,
+  pointShop: PointShop,
   editAddress: EditAddress,
   goodsCar: GoodsCar,
   myOrders: MyOrders,

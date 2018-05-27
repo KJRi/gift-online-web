@@ -1,0 +1,25 @@
+.car-box{
+    background-color: #fff;
+
+:global {
+  .ant-table-content{
+  background-color: #fff;
+  text-align: center;
+}
+img {
+  width: 100px;
+  height: 100px;
+}
+}
+}
+.operator-list{
+  background-color: #fff;
+  height: 100px;
+  .account-list{
+    display: inline-block;
+    float: right;
+  }
+  :global .ant-btn{
+    margin:20px;
+  }
+}

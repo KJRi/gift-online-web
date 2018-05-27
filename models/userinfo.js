@@ -18,6 +18,10 @@ const UserInfoSchema = new Schema({
   location: {
     type: Array
   },
+  points: {
+    type: Number,
+    default: 0
+  },
   headerImg: {
     type: String,
     default: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'

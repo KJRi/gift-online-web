@@ -20,7 +20,7 @@ const columns = [{
   key: 'count'
 },
 {
-  title: '总价',
+  title: '价格',
   dataIndex: 'price',
   key: 'price'
 },
@@ -36,7 +36,8 @@ type State = {
   selected: Object,
   price: Number,
   addressList: Array<Object>,
-  address: Object
+  address: Object,
+  point: Number
 }
 
 class GoodsCar extends React.PureComponent<Props, State> {
@@ -44,6 +45,7 @@ class GoodsCar extends React.PureComponent<Props, State> {
     visible: false,
     carsList: [],
     selected: {},
+    point: 0,
     price: 0,
     addressList: [],
     address: {}
@@ -98,6 +100,12 @@ class GoodsCar extends React.PureComponent<Props, State> {
     .then(res => this.setState({
       addressList: res[0].address
     }))
+    fetch(`/info/get?username=${username}`, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(res => this.setState({
+      point: res.points
+    }))
   }
   account = () => {
     const { selected, address } = this.state
@@ -150,6 +158,16 @@ class GoodsCar extends React.PureComponent<Props, State> {
       body: JSON.stringify({
         username: localStorage.getItem('username'),
         carId: selected.key
+      })
+    })
+    fetch('/info/point', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        point: this.state.point + selected.price * selected.count
       })
     })
     location.href = './myOrders'

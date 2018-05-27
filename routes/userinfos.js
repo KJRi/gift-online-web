@@ -26,6 +26,25 @@ router.post('/editInfo', (req, res) => {
     })
   }
 })
+// 积分增加减少
+router.post('/point', (req, res) => {
+  if (!req.body.username) {
+    res.json({ success: false, message: '未登录' })
+  } else {
+    var newUserInfo = {
+      points: req.body.point
+    }
+    // 存储用户信息
+    UserInfo.update({ username: req.body.username }, newUserInfo, {
+      upsert: true
+    }, (err) => {
+      if (err) {
+        return res.json({ success: false, message: '操作失败!' })
+      }
+      res.json({ success: true, message: '操作成功!' })
+    })
+  }
+})
 // 用户名读取资料
 router.get('/get', (req, res) => {
   UserInfo.findOne({ 'username': req.query.username }, (err, info) => {

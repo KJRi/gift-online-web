@@ -61,8 +61,11 @@ class Footer extends React.Component<Props, State> {
       case '/personal':
         key = 'personal'
         break
-      // default:
-      //   key = 'home'
+      case '/pointShop':
+        key = 'pointShop'
+        break
+      default:
+        key = 'home'
     }
     this.setState({ current: key })
   }
@@ -81,6 +84,7 @@ class Footer extends React.Component<Props, State> {
           <Menu.Item key='home'><Link to='/'><Icon type='home' />首页</Link></Menu.Item>
           <Menu.Item key='detail'><Link to='/detail'><Icon type='bars' />分类</Link></Menu.Item>
           <Menu.Item key='goodsCar'><Link to='/goodsCar'><Icon type='shopping-cart' />购物车</Link></Menu.Item>
+          <Menu.Item key='pointShop'><Link to='/pointShop'><Icon type='pay-circle' />积分商城</Link></Menu.Item>
           <Menu.Item key='personal'><Link to='/personal'><Icon type='user' />个人中心</Link></Menu.Item>
         </Menu>
       </footer>

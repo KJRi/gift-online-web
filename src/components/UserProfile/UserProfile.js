@@ -41,6 +41,7 @@ class UserProfile extends React.PureComponent<Props, State> {
           ? <p><Icon type='environment' />{userinfo.location[0]}/{userinfo.location[1]}/{userinfo.location[2]}</p>
           : ''
         }
+        <h4><Icon type='pay-circle-o' style={{ color: 'red', marginRight: 10 }} />积分：{userinfo.points}</h4>
       </div>
     )
   }

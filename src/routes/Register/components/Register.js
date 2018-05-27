@@ -30,6 +30,15 @@ class RegisterFormCom extends Component {
             message.destroy()
             message.success(res.message)
             localStorage.setItem('username', values.username)
+            fetch('/info/editInfo', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                username: values.username
+              })
+            })
             window.location.href = '/'
           } else {
             // 失败时报错
@@ -74,7 +83,7 @@ class RegisterFormCom extends Component {
           <FormItem>
             <Button className={styles.loginButton} type='primary' htmlType='submit'>
                           注册
-                      </Button>
+            </Button>
           </FormItem>
         </Form>
         <p>已有帐号？<a href='/login'>登录</a></p>
