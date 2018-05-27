@@ -33,7 +33,7 @@ class myFav extends React.PureComponent<Props, State> {
     const { goodsList } = this.state
     if (goodsList.length) {
       goodsList && goodsList.map(item => {
-        item.href = `/good/${item._id}`
+        item.href = `/good/${item.goodId}`
       })
     }
     return (

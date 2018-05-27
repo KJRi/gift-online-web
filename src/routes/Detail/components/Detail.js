@@ -126,7 +126,7 @@ class Detail extends React.PureComponent<Props, State> {
             <Menu.Item key='送小孩'>送小孩</Menu.Item>
           </Menu>
         </Sider>
-        <div>
+        <div style={{ width: '100%' }}>
           <Search
             placeholder='请输入您想搜索的礼物'
             onSearch={this.searchPst}
