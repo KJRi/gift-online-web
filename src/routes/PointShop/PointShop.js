@@ -91,6 +91,16 @@ class PointShop extends React.PureComponent<Props, State> {
       message.info('积分不足')
       return
     }
+    fetch('/info/point', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        point: this.state.point - selected.price * selected.count
+      })
+    })
     fetch('/order/create', {
       method: 'POST',
       headers: {
