@@ -51,7 +51,7 @@ class PointShop extends React.PureComponent<Props, State> {
         return {
           key: item._id,
           name: item.title,
-          goodId: item.goodId,
+          goodId: item._id,
           imageUrl: <img src={item.imageUrl} />,
           image: item.imageUrl,
           count: 1,

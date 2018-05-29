@@ -14,12 +14,14 @@ import GoodsCar from './GoodsCar'
 import MyOrders from './MyOrders'
 import EditBirth from './EditBirth'
 import PointShop from './PointShop'
+import TagGift from './TagGift'
 
 // Force import during development to enable Hot-Module Replacement
 // not need ?
 
 export default {
   editBirth: EditBirth,
+  tagGift: TagGift,
   pointShop: PointShop,
   editAddress: EditAddress,
   goodsCar: GoodsCar,

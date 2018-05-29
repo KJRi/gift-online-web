@@ -23,6 +23,7 @@ export const CoreLayout = () => (
         <Route path='/editAddress' component={routes.editAddress} exact />
         <Route path='/myfav' component={routes.myfav} exact />
         <Route path='/good/:id' component={routes.good} exact />
+        <Route path='/tagGift/:tag' component={routes.tagGift} exact />
         <Route path='/editUserInfo' component={routes.editUserInfo} exact />
         <Route path='/circle/:username' component={routes.circle} exact />
         <Route path='/personal' component={routes.personal} exact />

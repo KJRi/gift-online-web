@@ -1,9 +1,10 @@
 // @flow
 import React from 'react'
 import styles from './Home.css'
-import { Carousel } from 'antd'
+import { Carousel, Card } from 'antd'
 import { Link } from 'react-router-dom'
 import GoodsList from 'components/GoodsList'
+const { Meta } = Card
 
 type Props = {}
 type State = {
@@ -52,7 +53,46 @@ class Home extends React.PureComponent<Props, State> {
             </Link>
           </div>
         </Carousel>
-        <GoodsList {...{ goodsList }} />
+        <Link to='/tagGift/生日'>
+          <Card
+            hoverable
+            cover={<img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527595889416&di=02f7584a62344b6bd14af37465a0f36a&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F16%2F38%2F51%2F54Z58PICxpd_1024.jpg' />}
+  >
+            <Meta
+              title='生日专区'
+    />
+          </Card>
+        </Link>
+        <Link to='/tagGift/商务'>
+          <Card
+            hoverable
+            cover={<img src='http://pic8.nipic.com/20100703/4478444_163627633917_2.jpg' />}
+  >
+            <Meta
+              title='商务专区'
+    />
+          </Card>
+        </Link>
+        <Link to='/tagGift/结婚'>
+          <Card
+            hoverable
+            cover={<img src='http://picapi.ooopic.com/01/07/64/60b1OOOPIC46.jpg' />}
+  >
+            <Meta
+              title='结婚专区'
+    />
+          </Card>
+        </Link>
+        <Link to='/tagGift/纪念日'>
+          <Card
+            hoverable
+            cover={<img src='http://kids.nationalgeographic.com/content/dam/kids/photos/games/Hub%20promos/memory.ngsversion.1438028331698.adapt.1900.1.png' />}
+  >
+            <Meta
+              title='纪念日'
+    />
+          </Card>
+        </Link>
       </div>
     )
   }
