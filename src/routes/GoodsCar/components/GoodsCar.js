@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { Table, Button, message, Select } from 'antd'
+import { Table, Button, message, Select, InputNumber } from 'antd'
 import styles from './GoodsCar.css'
 const Option = Select.Option
 
@@ -88,7 +88,8 @@ class GoodsCar extends React.PureComponent<Props, State> {
           goodId: item.goodId,
           imageUrl: <img src={item.imageUrl} />,
           image: item.imageUrl,
-          count: item.count,
+          num: item.count,
+          count: <InputNumber min={1} defaultValue={item.count} onChange={(e) => this.changeCount(item, e)} />,
           price: item.price.toFixed(2),
           operator: <Button onClick={() => this.deleteCar(item._id)}>删除</Button>
         }
@@ -106,6 +107,32 @@ class GoodsCar extends React.PureComponent<Props, State> {
     .then(res => this.setState({
       point: res.points
     }))
+  }
+  changeCount = (item: Object, e: Number) => {
+    console.log(e)
+    console.log(item._id)
+    fetch('/car/point', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem('username'),
+        id: item._id,
+        count: e
+      })
+    }).then(res => res.json())
+    .then(res => {
+      // 后端正确
+      if (res.success) {
+        message.destroy()
+        message.success(res.message)
+      } else {
+        message.destroy()
+        message.info(res.message)
+      }
+    })
+    .catch(e => console.log('Oops, error', e))
   }
   account = () => {
     const { selected, address } = this.state
@@ -208,7 +235,7 @@ class GoodsCar extends React.PureComponent<Props, State> {
         <Table columns={columns} dataSource={carsList}
           rowSelection={{
             type: 'radio',
-            onSelect: (value) => this.setState({ selected: value, price: value.count * value.price })
+            onSelect: (value) => this.setState({ selected: value, price: value.num * value.price })
           }}
           pagination={{
             hideOnSinglePage: true
