@@ -144,7 +144,6 @@ class Good extends React.PureComponent<Props, State> {
   }
   render () {
     const { good, url, favState, judgeList } = this.state
-    console.log(judgeList)
     return (
       <div className={styles['containal']}>
         <Carousel autoPlay>

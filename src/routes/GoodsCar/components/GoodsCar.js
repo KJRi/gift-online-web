@@ -158,7 +158,7 @@ class GoodsCar extends React.PureComponent<Props, State> {
         title: selected.name,
         imageUrl: selected.image,
         price: selected.price,
-        count: selected.count,
+        count: selected.num,
         goodId: selected.goodId,
         name: address.name,
         phoneNum: address.phoneNum,
