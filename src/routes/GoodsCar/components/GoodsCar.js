@@ -90,7 +90,7 @@ class GoodsCar extends React.PureComponent<Props, State> {
           image: item.imageUrl,
           num: item.count,
           count: <InputNumber min={1} defaultValue={item.count} onChange={(e) => this.changeCount(item, e)} />,
-          price: item.price.toFixed(2),
+          price: (item.price * item.count).toFixed(2),
           operator: <Button onClick={() => this.deleteCar(item._id)}>删除</Button>
         }
       })
@@ -109,8 +109,7 @@ class GoodsCar extends React.PureComponent<Props, State> {
     }))
   }
   changeCount = (item: Object, e: Number) => {
-    console.log(e)
-    console.log(item._id)
+    const username = localStorage.getItem('username')
     fetch('/car/point', {
       method: 'POST',
       headers: {
@@ -133,17 +132,34 @@ class GoodsCar extends React.PureComponent<Props, State> {
       }
     })
     .catch(e => console.log('Oops, error', e))
+    fetch(`/car/get?username=${username}`, {
+      method: 'GET'
+    }).then(res => res.json())
+    .then(res => this.setState({
+      carsList: res.map((item, index) => {
+        return {
+          key: item._id,
+          name: item.title,
+          goodId: item.goodId,
+          imageUrl: <img src={item.imageUrl} />,
+          image: item.imageUrl,
+          num: item.count,
+          count: <InputNumber min={1} defaultValue={item.count} onChange={(e) => this.changeCount(item, e)} />,
+          price: (item.price * item.count).toFixed(2),
+          operator: <Button onClick={() => this.deleteCar(item._id)}>删除</Button>
+        }
+      })
+    }))
   }
   account = () => {
-    const { selected, address } = this.state
-    console.log(selected)
-    console.log(address)
+    const { selected, address, addressList } = this.state
+    const newAddress = addressList[address]
     if (!selected.name) {
       message.destroy()
       message.info('请选择商品')
       return
     }
-    if (!address.name) {
+    if (!newAddress.name) {
       message.destroy()
       message.info('请选择地址')
       return
@@ -160,10 +176,10 @@ class GoodsCar extends React.PureComponent<Props, State> {
         price: selected.price,
         count: selected.num,
         goodId: selected.goodId,
-        name: address.name,
-        phoneNum: address.phoneNum,
-        detail: address.detail,
-        location: address.location
+        name: newAddress.name,
+        phoneNum: newAddress.phoneNum,
+        detail: newAddress.detail,
+        location: newAddress.location
       })
     }).then(res => res.json())
     .then(res => {
@@ -194,7 +210,7 @@ class GoodsCar extends React.PureComponent<Props, State> {
       },
       body: JSON.stringify({
         username: localStorage.getItem('username'),
-        point: this.state.point + selected.price * selected.count
+        point: this.state.point + selected.price * selected.num
       })
     })
     location.href = './myOrders'
@@ -224,29 +240,28 @@ class GoodsCar extends React.PureComponent<Props, State> {
   }
   render () {
     const { carsList, price, addressList } = this.state
-    const option = addressList && addressList.map((item, index) => {
-      return (
-        <Option value={item} key={item._id}>{item.name}/{item.phoneNum}/{item.location[0]}
-          {item.location[1]}{item.location[2]}/{item.detail}</Option>
-      )
-    })
     return (
       <div className={styles['car-box']}>
         <Table columns={columns} dataSource={carsList}
           rowSelection={{
             type: 'radio',
-            onSelect: (value) => this.setState({ selected: value, price: value.num * value.price })
+            onSelect: (value) => this.setState({ selected: value, price: value.price })
           }}
           pagination={{
             hideOnSinglePage: true
           }} />
         <Select style={{ width: 400 }} size='large' onChange={(value) => this.setState({ address: value })}>
-          {option}
+          { addressList && addressList.map((item, index) => {
+            return (
+              <Option key={index}>{item.name}/{item.phoneNum}/{item.location[0]}
+                {item.location[1]}{item.location[2]}/{item.detail}</Option>
+            )
+          })}
         </Select>
         <div className={styles['operator-list']}>
           <Button size='large' onClick={this.resetCar}>清空购物车</Button>
           <div className={styles['account-list']}>
-          总价：￥{price.toFixed(2)}
+          总价：￥{price}
             <Button size='large' type='primary' onClick={this.account}>结算</Button>
           </div>
         </div>
