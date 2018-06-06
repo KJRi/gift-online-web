@@ -85,7 +85,7 @@ class Detail extends React.PureComponent<Props, State> {
       })
     })
     } else {
-      fetch('/good/get', {
+      fetch('/good/getdown', {
         method: 'GET'
       })
   .then(res => res.json())
@@ -99,13 +99,27 @@ class Detail extends React.PureComponent<Props, State> {
   changeSort = () => {
     const { priceState } = this.state
     if (priceState) {
-      this.setState({
-        priceState: false
+      fetch('/good/getdown', {
+        method: 'GET'
       })
+  .then(res => res.json())
+  .then(res => {
+    this.setState({
+      priceState: false,
+      goodsList: res
+    })
+  })
     } else {
+      fetch('/good/get', {
+        method: 'GET'
+      })
+    .then(res => res.json())
+    .then(res => {
       this.setState({
+        goodsList: res,
         priceState: true
       })
+    })
     }
   }
   render () {

@@ -3,11 +3,11 @@
   .ant-carousel .slick-slide {
     text-align: center;
     height: 400px;
-    background: #e4393c;
     overflow: hidden;
   }
   img{
     margin: 0 auto;
     height: 400px;
+    /* width: 100%; */
   }
 }
